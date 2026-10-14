@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { timeline } from "../data/timeline.js";
 import { totalCost, totalIncome } from "../data/ledger.js";
-import { projects } from "../data/projects.js";
+import { projects, totalCommits } from "../data/projects.js";
 
 const start = new Date("2026-05-11");
 const now = new Date("2026-10-15");
@@ -22,12 +22,15 @@ const keyNodes = timeline.filter((t) => t.key);
     2026 年 5 月 11 日，收车之后，我在一家网吧开机，
     买下 <code>useaitools.me</code>，给自己定了 10 小时做出一个能赚钱的网站的计划。
     到今天，第 {days} 天。
+    <br />
+    最近两个月，一天跑车下来平均 30 块左右；5 月份行情好时，一天能跑 100 到 150 块。
   </p>
 
   <div class="stats">
-    <div class="stat amber"><span class="num">¥30</span><span class="label">日均跑车收入</span></div>
+    <div class="stat amber"><span class="num">¥30</span><span class="label">日均跑车(近两月)</span></div>
     <div class="stat"><span class="num">{days}</span><span class="label">天</span></div>
     <div class="stat"><span class="num">{projects.length}</span><span class="label">个项目</span></div>
+    <div class="stat blue"><span class="num">{totalCommits}</span><span class="label">次提交</span></div>
     <div class="stat red"><span class="num">¥{totalCost}</span><span class="label">累计投入</span></div>
     <div class="stat green"><span class="num">¥{totalIncome}</span><span class="label">累计收入</span></div>
   </div>
@@ -40,10 +43,16 @@ const keyNodes = timeline.filter((t) => t.key);
     </p>
   </div>
 
+  <p style="margin-top: 22px; padding: 14px 18px; border-left: 3px solid var(--amber); background: var(--amber-glow); border-radius: 0 var(--radius) var(--radius) 0; color: #f5e6c8;">
+    <strong style="color: var(--amber);">这几个月我没闲着。</strong>
+    19 个仓库、{totalCommits} 次提交，从 AI 工具站做到 Godot 游戏、倒瓶子小游戏、直播助手、刷新率工具。
+    以前网站没把这些写出来，现在补上了——在 <a href="/projects">项目</a> 和 <a href="/timeline">时间线</a> 里，能看到每一份努力。
+  </p>
+
   <p style="margin-top: 26px;">
     我没有办公室，没有独立工位，没有一整段不被打断的时间。
     代码是在跑车间隙写的，文章是在网吧按小时买来的时间里敲的。
-    一天跑车下来挣 30 块，再拿出其中一部分去上网。
+    最近两个月一天跑车下来挣 30 块，5 月好的时候能到 100 多；再拿出其中一部分去上网。
   </p>
 
   <p style="color: var(--text-dim);">
