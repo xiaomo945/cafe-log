@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { timeline } from "../data/timeline.js";
+import { totalCost, totalIncome } from "../data/ledger.js";
+import { projects } from "../data/projects.js";
+
+const start = new Date("2026-05-11");
+const now = new Date("2026-10-15");
+const days = Math.floor((now - start) / 86400000);
+
+// 首页只放关键节点
+const keyNodes = timeline.filter((t) => t.key);
+---
+
+<BaseLayout title="起点" active="home">
+  <h1>从一个网吧开始</h1>
+
+  <p style="font-size: 1.08rem; color: var(--text-dim); margin-bottom: 8px;">
+    2026 年 5 月 11 日，我在河北保定一家网吧开机，
+    买下 <code>useaitools.me</code>，给自己定了 10 小时做出一个能赚钱的网站的计划。
+  </p>
+  <p style="color: var(--text-dim);">
+    到今天 {days} 天。做了 {projects.length} 个项目，收入 ¥0。
+    这些数字不算好看，但它们是真的，所以我把它们放在这里。
+  </p>
+
+  <div class="stats">
+    <div class="stat amber"><span class="num">{days}</span><span class="label">天</span></div>
+    <div class="stat"><span class="num">{projects.length}</span><span class="label">个项目</span></div>
+    <div class="stat red"><span class="num">¥{totalCost}</span><span class="label">投入</span></div>
+    <div class="stat green"><span class="num">¥{totalIncome}</span><span class="label">收入</span></div>
+  </div>
+
+  <p style="color: var(--text-faint); font-size: 0.9rem; margin-top: -10px;">
+    投入和收入分开记。不合并，不抵消 —— 每一个数字都应该被单独看见。
+  </p>
+
+  <h2>为什么会有这个站</h2>
+
+  <p>
+    一开始只是想记流水账。后来发现，<strong>记录本身就是一种验证</strong>——
+    你写下的每一条计划、每一次被拒、每一个"下次一定"，半年后回头看，
+    会非常诚实地告诉你：你到底是能力不够，还是根本没做。
+  </p>
+
+  <p>
+    我不确定这条路最后会不会走通。但有两件事是确定的：
+  </p>
+
+  <blockquote>
+    <p>
+      如果哪天成功了，这个站就是证据——它记下了还没成功时的样子，那时候的窘迫、误判和坚持都还在。
+      <br /><br />
+      如果哪天放弃了，这个站就是交代——至少我没有糊弄过去，我知道自己走到过哪里。
+    </p>
+  </blockquote>
+
+  <h2>关键节点</h2>
+
+  <div class="timeline">
+    {
+      keyNodes.map((t) => (
+        <div class="tl-item key">
+          <div class="tl-date">{t.date}</div>
+          <div class="tl-title">{t.title}</div>
+          <div class="tl-body">
+            {t.quote && (
+              <blockquote style="margin: 14px 0;">
+                <p>{t.quote}</p>
+              </blockquote>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <p style="margin-top: 30px;">
+    <a href="/timeline">查看完整时间线 →</a>
+  </p>
+
+  <h2>这个站会怎么长</h2>
+
+  <p>现在是纯文字。以后会慢慢加东西：</p>
+
+  <ul>
+    <li><strong>图片</strong> —— 网吧的桌子、第一次跑通的截图、失败项目的界面</li>
+    <li><strong>视频</strong> —— 如果开了 TikTok / YouTube / B 站账号，视频会直接嵌进来，也能跳过去看</li>
+    <li><strong>更多复盘</strong> —— 每停下一个项目，就写清楚「卡在哪」</li>
+  </ul>
+
+  <p style="color: var(--text-dim); font-size: 0.92rem;">
+    内容是 Markdown 存的，所以以后想把某篇文章改成视频脚本，
+    原文直接就能用 —— 这也是从一开始就没选复杂框架的原因。
+  </p>
+</BaseLayout>
