@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cafeeai.tools/sitemap-index.xml
+Sitemap: https://cafeaitools.com/sitemap-index.xml
