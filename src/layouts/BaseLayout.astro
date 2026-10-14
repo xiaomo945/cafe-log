@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = "从一个网吧开始的 AI 创业记录。157 天，17 个项目，¥0 收入。",
+  description = "保定出租车司机，一天 30 块，用 AI 做产品与游戏的真实记录。157 天，17 个项目，1400+ 次提交。",
   active = "",
 } = Astro.props;
 
@@ -22,6 +22,7 @@ const nav = [
   { href: "/projects", label: "项目", key: "projects" },
   { href: "/posts", label: "日志", key: "posts" },
   { href: "/about", label: "关于", key: "about" },
+  { href: "/growth", label: "成长", key: "growth" },
 ];
 ---
 
@@ -45,6 +46,7 @@ const nav = [
   </head>
 
   <body>
+    <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
     <header class="site-header">
       <div class="wrap inner">
         <a href="/" class="brand">cafeaitools<span class="dot">.</span>com</a>
@@ -76,5 +78,24 @@ const nav = [
         </p>
       </div>
     </footer>
+
+    <script is:inline>
+      (function () {
+        var bar = document.getElementById("reading-progress");
+        if (!bar) return;
+        var ticking = false;
+        function update() {
+          var h = document.documentElement;
+          var max = h.scrollHeight - h.clientHeight;
+          var pct = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+          bar.style.transform = "scaleX(" + Math.min(1, Math.max(0, pct)) + ")";
+          ticking = false;
+        }
+        window.addEventListener("scroll", function () {
+          if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+        }, { passive: true });
+        update();
+      })();
+    </script>
   </body>
 </html>
