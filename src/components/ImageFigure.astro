@@ -1,0 +1,55 @@
+---
+/**
+ * 图片组件
+ *
+ * 用法（Markdown 里）：
+ *   <ImageFigure src="/img/2026-05-11/web.jpg" alt="网吧的桌子" caption="2026-05-11，保定，就这样开始了" />
+ *
+ * 图片统一放 public/img/ 下，按日期分文件夹。
+ * 现在可以不用，等你想配图时直接加就行。
+ */
+
+interface Props {
+  src: string;
+  alt?: string;
+  caption?: string;
+  /** 图片宽度：full（通栏）| normal（正文宽度，默认） */
+  width?: "normal" | "full";
+}
+
+const { src, alt = "", caption = "", width = "normal" } = Astro.props;
+---
+
+<figure class:list={["img-fig", width === "full" && "is-full"]}>
+  <img src={src} alt={alt} loading="lazy" decoding="async" />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .img-fig {
+    margin: 30px 0;
+  }
+  .img-fig img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .img-fig figcaption {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--text-faint);
+    text-align: center;
+    line-height: 1.6;
+  }
+  /* 通栏图：突破正文宽度，视觉冲击力更强 */
+  .is-full {
+    width: calc(100% + 120px);
+    margin-left: -60px;
+  }
+  @media (max-width: 900px) {
+    .is-full {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+</style>
