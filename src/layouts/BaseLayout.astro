@@ -20,6 +20,7 @@ const nav = [
   { href: "/timeline", label: "时间线", key: "timeline" },
   { href: "/ledger", label: "收支", key: "ledger" },
   { href: "/projects", label: "项目", key: "projects" },
+  { href: "https://shouyou.me", label: "游戏", key: "games", external: true },
   { href: "/posts", label: "日志", key: "posts" },
   { href: "/about", label: "关于", key: "about" },
   { href: "/growth", label: "成长", key: "growth" },
@@ -67,7 +68,11 @@ const nav = [
         <nav class="nav">
           {
             nav.map((n) => (
-              <a href={n.href} class={active === n.key ? "active" : ""}>
+              <a
+                href={n.href}
+                class={active === n.key ? "active" : ""}
+                {...(n.external ? { target: "_blank", rel: "noopener" } : {})}
+              >
                 {n.label}
               </a>
             ))
@@ -89,6 +94,25 @@ const nav = [
           至今 157 天 · 17 个项目 · 投入 ¥438 · 收入 ¥0。
           <br />
           如果哪天这个站有意义了，那是因为它记下了还没成功时的样子。
+        </p>
+        <p style="margin-top: 10px;">
+          <a
+            href="https://github.com/xiaomo945"
+            target="_blank"
+            rel="noopener"
+            style="color: var(--amber); text-decoration: none;"
+          >
+            GitHub 仓库 ↗ github.com/xiaomo945
+          </a>
+          <br />
+          <a
+            href="https://shouyou.me"
+            target="_blank"
+            rel="noopener"
+            style="color: var(--text-dim); text-decoration: none; font-size: 0.9rem;"
+          >
+            游戏合集 ↗ shouyou.me
+          </a>
         </p>
       </div>
     </footer>
