@@ -10,6 +10,14 @@ const days = Math.floor((now - start) / 86400000);
 
 // 首页只放关键节点
 const keyNodes = timeline.filter((t) => t.key);
+
+// 首页导流区：挑 4 个最能代表当前的项目（在线 + 重点游戏）
+const statusText = { live: "已上线", building: "进行中", stopped: "已停", dead: "建议放弃" };
+const statusCls = { live: "live", building: "done", stopped: "stop", dead: "stop" };
+const kindText = { web: "网页", game: "游戏", tool: "工具", app: "应用", note: "记录" };
+const featured = ["useaitools-me", "veggie-arena", "bottlesort", "star-rift-miner"]
+  .map((n) => projects.find((p) => p.name === n))
+  .filter(Boolean);
 ---
 
 <BaseLayout title="起点" active="home">
@@ -87,6 +95,44 @@ const keyNodes = timeline.filter((t) => t.key);
       我知道自己走到过哪里。
     </p>
   </blockquote>
+
+  <h2>能点开的东西</h2>
+  <p style="color: var(--text-dim);">
+    下面这些是已经上线、或者源码能看的。点开就是我的全部项目 ——
+    能玩的玩一玩，能用的打开看看，没上线的可以去源码里翻。
+  </p>
+
+  <div class="grid">
+    {
+      featured.map((p) => (
+        <div class="card" style="margin-bottom: 0; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
+            <span class={`tag ${statusCls[p.status]}`}>{statusText[p.status]}</span>
+            <span class="tag">{kindText[p.kind]}</span>
+          </div>
+          <strong style="font-size: 1.04rem;">{p.name}</strong>
+          <p style="margin: 8px 0 0; font-size: 0.9rem; color: var(--text-dim); flex: 1;">
+            {p.intro}
+          </p>
+          <div style="margin-top: 14px;">
+            {p.url ? (
+              <a class="card-link" href={p.url} target="_blank" rel="noopener">
+                {p.kind === "game" ? "▶ 玩一玩" : "↗ 打开网站"}
+              </a>
+            ) : (
+              <a class="card-link ghost" href={`https://github.com/xiaomo945/${p.name}`} target="_blank" rel="noopener">
+                ↗ 看源码
+              </a>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <p style="margin-top: 22px;">
+    <a href="/projects">看全部 17 个项目 →</a>
+  </p>
 
   <h2>关键节点</h2>
 
