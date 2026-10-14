@@ -1,0 +1,151 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { costs, income, affiliate, totalCost, totalIncome, net } from "../data/ledger.js";
+
+const statusLabel = {
+  approved: { text: "已获批", cls: "done" },
+  rejected: { text: "被拒", cls: "stop" },
+  pending: { text: "待审核", cls: "" },
+};
+---
+
+<BaseLayout title="收支" description="投入 ¥438，收入 ¥0。两个数字分开记，不合并。" active="ledger">
+  <h1>收支</h1>
+  <p style="color: var(--text-dim);">
+    投入和收入分开记。不合并，不抵消 —— 每个数字都该被单独看见。
+  </p>
+
+  <div class="stats">
+    <div class="stat red">
+      <span class="num">¥{totalCost}</span>
+      <span class="label">累计投入</span>
+    </div>
+    <div class="stat green">
+      <span class="num">¥{totalIncome}</span>
+      <span class="label">累计收入</span>
+    </div>
+    <div class="stat">
+      <span class="num">¥{net}</span>
+      <span class="label">净额</span>
+    </div>
+    <div class="stat amber">
+      <span class="num">151</span>
+      <span class="label">天未更新</span>
+    </div>
+  </div>
+
+  <h2>投入明细</h2>
+
+  <table>
+    <thead>
+      <tr><th>日期</th><th>项目</th><th>金额</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      {
+        costs.map((c) => (
+          <tr>
+            <td style="font-family: var(--font-mono); font-size: 0.85rem;">{c.date}</td>
+            <td>{c.item}</td>
+            <td style="color: var(--red); font-variant-numeric: tabular-nums;">¥{c.amount}</td>
+            <td style="color: var(--text-dim); font-size: 0.88rem;">{c.note}</td>
+          </tr>
+        ))
+      }
+      <tr>
+        <td></td>
+        <td><strong>合计</strong></td>
+        <td style="color: var(--red);"><strong>¥{totalCost}</strong></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="color: var(--text-faint); font-size: 0.88rem;">
+    全部是域名。没有服务器成本（Vercel 免费额度），没有付费工具。
+    如果算上网吧上网费和时间，实际成本要高得多 —— 但那些不记在钱这一栏。
+  </p>
+
+  <h2>收入明细</h2>
+
+  {
+    income.length > 0 ? (
+      <table>
+        <thead>
+          <tr><th>日期</th><th>来源</th><th>金额</th><th>备注</th></tr>
+        </thead>
+        <tbody>
+          {income.map((i) => (
+            <tr>
+              <td>{i.date}</td>
+              <td>{i.source}</td>
+              <td style="color: var(--green);">¥{i.amount}</td>
+              <td style="color: var(--text-dim); font-size: 0.88rem;">{i.note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : (
+      <div class="card">
+        <p style="margin: 0; color: var(--text-dim);">
+          <strong style="color: var(--text);">还没有收入。</strong>
+          <br /><br />
+          这一栏现在是空的。它保持空着，直到第一笔钱进来 ——
+          不管是 ¥0.5 还是 ¥500，进来那天我会写清楚它从哪来。
+        </p>
+      </div>
+    )
+  }
+
+  <h2>联盟申请记录</h2>
+
+  <p style="color: var(--text-dim); font-size: 0.95rem;">
+    这是唯一一批来自真实世界的反馈。两条拒绝理由，比任何自我复盘都值钱。
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>平台</th><th>工具</th><th>佣金</th><th>申请日期</th><th>状态</th></tr>
+    </thead>
+    <tbody>
+      {
+        affiliate.map((a) => {
+          const s = statusLabel[a.status];
+          return (
+            <tr>
+              <td>{a.platform}</td>
+              <td>{a.tool}</td>
+              <td style="color: var(--text-dim); font-size: 0.88rem;">{a.commission}</td>
+              <td style="font-family: var(--font-mono); font-size: 0.82rem;">{a.date}</td>
+              <td>
+                <span class={`tag ${s.cls}`}>{s.text}</span>
+                <div style="font-size: 0.8rem; color: var(--text-faint); margin-top: 3px;">
+                  {a.note}
+                </div>
+              </td>
+            </tr>
+          );
+        })
+      }
+    </tbody>
+  </table>
+
+  <h3>两条拒绝理由，值 ¥438</h3>
+
+  <div class="card">
+    <p style="margin-bottom: 12px;">
+      <strong>1. PartnerStack：「与疑似欺诈账户有关联」</strong><br />
+      <span style="color: var(--text-dim);">
+        真实原因是网吧 IP 被风控标记，梯子频繁切节点导致登录地异常。
+        这是环境问题，不是能力问题。
+      </span>
+    </p>
+    <p style="margin: 0;">
+      <strong>2. AppSumo（Impact）：「新网站缺乏流量」</strong><br />
+      <span style="color: var(--text-dim);">
+        这条更狠。它说明白了一件事：<strong style="color: var(--amber);">
+        所有变现方式的前置条件都是流量</strong>。
+        我建了完整的联盟架构，但流量侧只有 SEO 内容矩阵，见效周期以月计。
+      </span>
+    </p>
+  </div>
+</BaseLayout>
