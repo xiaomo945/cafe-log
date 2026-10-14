@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const fmt = (d) =>
+  d.toLocaleDateString("zh-CN", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<BaseLayout title={post.data.title} description={post.data.summary} active="posts">
+  <article>
+    <div
+      style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--amber); margin-bottom: 8px;"
+    >
+      {fmt(post.data.date)}
+    </div>
+    <h1 style="margin-bottom: 10px;">{post.data.title}</h1>
+
+    {
+      post.data.tags.length > 0 && (
+        <div style="margin-bottom: 30px;">
+          {post.data.tags.map((t) => (
+            <span class="tag">{t}</span>
+          ))}
+        </div>
+      )
+    }
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <hr />
+
+  <p><a href="/posts">← 返回日志列表</a></p>
+</BaseLayout>
+
+<style>
+  .prose {
+    font-size: 1.02rem;
+  }
+  .prose :global(h2) {
+    font-size: 1.35rem;
+    margin-top: 46px;
+  }
+  .prose :global(h3) {
+    font-size: 1.1rem;
+  }
+</style>
