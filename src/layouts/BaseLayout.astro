@@ -42,6 +42,20 @@ const nav = [
     <meta property="og:site_name" content="cafeaitools.com" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Google Analytics（GA4）· 衡量 ID G-7B09SHWGWM · 全站统一统计 -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-7B09SHWGWM"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      // 增强型衡量（滚动 / 出站点击 / 视频互动 / 文件下载）已在 GA 后台开启，config 即可生效
+      gtag("config", "G-7B09SHWGWM", {
+        anonymize_ip: true,        // 匿名化 IP，符合隐私合规
+        page_location: location.href,
+        page_title: document.title,
+      });
+    </script>
+
     <!-- 让 VideoEmbed / ImageFigure 在 Markdown 里可直接用 -->
   </head>
 
