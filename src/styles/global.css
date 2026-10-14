@@ -1,0 +1,424 @@
+/* ============ 设计基调 ============
+   故事起点是保定一家网吧的深夜，
+   所以用深色底 + 暖琥珀色（像屏幕光打在桌面上）
+   ================================= */
+
+:root {
+  --bg: #0c0c0e;
+  --bg-soft: #141417;
+  --bg-card: #17171b;
+  --border: #26262c;
+  --border-soft: #1e1e23;
+
+  --text: #e8e6e3;
+  --text-dim: #a1a1aa;
+  --text-faint: #6b6b76;
+
+  --amber: #f0b429;
+  --amber-dim: #b8860b;
+  --amber-glow: rgba(240, 180, 41, 0.12);
+
+  --green: #4ade80;
+  --red: #f87171;
+  --blue: #60a5fa;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-serif: Georgia, "Songti SC", "SimSun", serif;
+  --font-mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --max-w: 760px;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* 顶部一抹暖光，呼应"网吧的灯" */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--amber) 20%,
+    var(--amber) 80%,
+    transparent
+  );
+  opacity: 0.55;
+  z-index: 999;
+}
+
+a {
+  color: var(--amber);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover {
+  color: #ffd166;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============ 布局 ============ */
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border-soft);
+  padding: 26px 0;
+  margin-bottom: 56px;
+}
+
+.site-header .inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.brand:hover {
+  text-decoration: none;
+  color: var(--amber);
+}
+.brand .dot {
+  color: var(--amber);
+}
+
+.nav {
+  display: flex;
+  gap: 22px;
+  font-size: 0.9rem;
+}
+.nav a {
+  color: var(--text-dim);
+}
+.nav a:hover {
+  color: var(--amber);
+  text-decoration: none;
+}
+.nav a.active {
+  color: var(--amber);
+}
+
+.site-footer {
+  margin-top: 90px;
+  padding: 34px 0 60px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  line-height: 1.9;
+}
+
+/* ============ 排版 ============ */
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.1rem;
+  margin-bottom: 18px;
+}
+h2 {
+  font-size: 1.45rem;
+  margin-top: 52px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+h3 {
+  font-size: 1.15rem;
+  margin-top: 34px;
+  margin-bottom: 12px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+/* 正文段落首行不缩进，靠间距分段 —— 屏幕阅读更友好 */
+
+ul,
+ol {
+  margin: 0 0 20px 1.3em;
+}
+li {
+  margin-bottom: 8px;
+}
+
+blockquote {
+  border-left: 3px solid var(--amber);
+  background: var(--amber-glow);
+  margin: 26px 0;
+  padding: 16px 20px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: #f5e6c8;
+  font-size: 1.02rem;
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 5px;
+  color: #fbbf24;
+}
+
+pre {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  overflow-x: auto;
+  margin: 22px 0;
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 44px 0;
+}
+
+/* ============ 数据看板 ============ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 14px;
+  margin: 34px 0;
+}
+
+.stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  text-align: center;
+}
+.stat .num {
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.stat .label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-top: 6px;
+  letter-spacing: 0.03em;
+}
+.stat.amber .num { color: var(--amber); }
+.stat.green .num { color: var(--green); }
+.stat.red .num { color: var(--red); }
+.stat.blue .num { color: var(--blue); }
+
+/* ============ 时间线 ============ */
+
+.timeline {
+  position: relative;
+  margin: 40px 0;
+  padding-left: 26px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    var(--amber) 0%,
+    var(--border) 30%,
+    var(--border) 100%
+  );
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 38px;
+}
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: -25px;
+  top: 8px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--border);
+}
+.tl-item.key::before {
+  background: var(--amber);
+  border-color: var(--amber);
+  box-shadow: 0 0 0 4px var(--amber-glow);
+}
+
+.tl-date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--amber);
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+}
+.tl-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.tl-body {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.tl-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============ 卡片 ============ */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+.card:hover {
+  border-color: #33333b;
+}
+
+/* ============ 表格 ============ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.92rem;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+th,
+td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-soft);
+}
+th {
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+td {
+  color: var(--text);
+}
+tr:last-child td {
+  border-bottom: none;
+}
+
+@media (min-width: 700px) {
+  table {
+    white-space: normal;
+    display: table;
+  }
+}
+
+/* ============ 标签 ============ */
+
+.tag {
+  display: inline-block;
+  font-size: 0.74rem;
+  padding: 2px 9px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.tag.done { color: var(--green); border-color: rgba(74, 222, 128, 0.3); }
+.tag.stop { color: var(--red); border-color: rgba(248, 113, 113, 0.3); }
+.tag.live { color: var(--amber); border-color: rgba(240, 180, 41, 0.35); }
+
+/* ============ 移动端 ============ */
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 1.75rem;
+  }
+  .wrap {
+    padding: 0 18px;
+  }
+  .nav {
+    gap: 16px;
+    font-size: 0.86rem;
+  }
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
