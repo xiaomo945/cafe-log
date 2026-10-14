@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { projects, publicCount, privateCount } from "../data/projects.js";
+
+const statusMeta = {
+  live: { text: "已上线", cls: "live" },
+  building: { text: "进行中", cls: "done" },
+  stopped: { text: "已停", cls: "stop" },
+  dead: { text: "建议放弃", cls: "stop" },
+};
+
+// 按存活天数排序
+const sorted = [...projects].sort((a, b) => b.days - a.days);
+---
+
+<BaseLayout title="项目" description="157 天，17 个项目。每一个都记录在这里。" active="projects">
+  <h1>项目</h1>
+  <p style="color: var(--text-dim);">
+    157 天，{projects.length} 个项目（公开 {publicCount} + 私有 {privateCount}）。
+    按存活天数排序。
+  </p>
+
+  <div class="stats">
+    <div class="stat"><span class="num">17</span><span class="label">总项目</span></div>
+    <div class="stat amber"><span class="num">4</span><span class="label">已上线</span></div>
+    <div class="stat red"><span class="num">7</span><span class="label">建议放弃</span></div>
+    <div class="stat"><span class="num">~20</span><span class="label">平均存活(天)</span></div>
+  </div>
+
+  <h2>全部项目</h2>
+
+  {
+    sorted.map((p) => {
+      const s = statusMeta[p.status];
+      return (
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+            <strong style="font-size: 1.05rem;">
+              {p.name}
+            </strong>
+            <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint);">
+              {p.days > 0 ? `${p.days} 天` : "不足 1 天"}
+            </span>
+          </div>
+
+          <div style="margin: 8px 0 10px;">
+            <span class={`tag ${s.cls}`}>{s.text}</span>
+            <span class="tag">{p.visibility === "public" ? "公开" : "私有"}</span>
+            <span class="tag">{p.lang}</span>
+          </div>
+
+          <p style="margin: 0 0 8px; color: var(--text-dim); font-size: 0.95rem;">
+            {p.desc}
+          </p>
+          <p style="margin: 0; font-size: 0.9rem;">{p.note}</p>
+
+          <div
+            style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-faint);"
+          >
+            {p.created} → {p.pushed}
+          </div>
+        </div>
+      );
+    })
+  }
+
+  <h2>从这张表读出来的三件事</h2>
+
+  <div class="card">
+    <p style="margin-top: 0;">
+      <strong>1. 唯一坚持的两个，都是「建系统」不是「做游戏」</strong><br />
+      <span style="color: var(--text-dim);">
+        useaitools.me（156 天）和 star-rift-miner（118 天）。纯游戏项目平均存活 10 天。
+      </span>
+    </p>
+  </div>
+
+  <div class="card">
+    <p style="margin-top: 0;">
+      <strong>2. 唯一「完整」的项目，是自己要用的那个</strong><br />
+      <span style="color: var(--text-dim);">
+        RefreshSwitch 做了一天，但功能完整、边界情况处理干净 ——
+        因为每天自己都在用，bug 全被自己撞出来了。
+      </span>
+    </p>
+  </div>
+
+  <div class="card">
+    <p style="margin-top: 0;">
+      <strong>3. 项目越做越短</strong><br />
+      <span style="color: var(--text-dim);">
+        10 月的 5 个新项目平均存活不到 3 天：dock-puzzle 2 小时，sub2api 1 小时，qingyan-pinzuo 6 分钟。
+        <strong style="color: var(--amber);">那是在「找方向」，不是在「做产品」。</strong>
+      </span>
+    </p>
+  </div>
+</BaseLayout>
