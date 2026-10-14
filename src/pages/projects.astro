@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { projects, publicCount, privateCount } from "../data/projects.js";
+import { projects, publicCount, privateCount, totalCommits } from "../data/projects.js";
 
 const statusMeta = {
   live: { text: "已上线", cls: "live" },
@@ -17,14 +17,14 @@ const sorted = [...projects].sort((a, b) => b.days - a.days);
   <h1>项目</h1>
   <p style="color: var(--text-dim);">
     157 天，{projects.length} 个项目（公开 {publicCount} + 私有 {privateCount}）。
-    按存活天数排序。
+    按存活天数排序。每个项目的 note 都来自真实提交记录——到底做了什么，不是一句话。
   </p>
 
   <div class="stats">
-    <div class="stat"><span class="num">17</span><span class="label">总项目</span></div>
-    <div class="stat amber"><span class="num">4</span><span class="label">已上线</span></div>
-    <div class="stat red"><span class="num">7</span><span class="label">建议放弃</span></div>
-    <div class="stat"><span class="num">~20</span><span class="label">平均存活(天)</span></div>
+    <div class="stat"><span class="num">{projects.length}</span><span class="label">总项目</span></div>
+    <div class="stat amber"><span class="num">3</span><span class="label">已上线</span></div>
+    <div class="stat"><span class="num">4</span><span class="label">进行中</span></div>
+    <div class="stat blue"><span class="num">{totalCommits}</span><span class="label">次提交</span></div>
   </div>
 
   <h2>全部项目</h2>
@@ -55,9 +55,10 @@ const sorted = [...projects].sort((a, b) => b.days - a.days);
           <p style="margin: 0; font-size: 0.9rem;">{p.note}</p>
 
           <div
-            style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-faint);"
+            style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-faint); display: flex; gap: 14px; flex-wrap: wrap;"
           >
-            {p.created} → {p.pushed}
+            <span>{p.created} → {p.pushed}</span>
+            <span>{p.commits} 次提交</span>
           </div>
         </div>
       );
