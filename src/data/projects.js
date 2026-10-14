@@ -2,8 +2,11 @@
  * 17 个项目（产品仓，不含 cafe-log / mind-vault 两个记录型仓库）
  * 数据来源：GitHub API（创建时间 / 最后推送时间 / 语言 / 可见性 / 作者提交数）
  * 每个项目的 note 都来自真实提交记录——到底做了什么，而不是只写一句话。
+ * intro 是写给访客看的介绍（玩法 / 亮点 / 现状），让博客能给项目导流。
+ * url 是该项目的线上地址（实测可打开才填）；没有 url 的，页面会挂 GitHub 源码链接。
  *
  * status: live 已上线 | building 进行中 | stopped 已停 | dead 建议放弃
+ * kind:   web 网页 | game 游戏 | tool 工具 | app 应用 | note 记录
  * commits: xiaomo945 在该仓库的提交次数（来自 search/commits）
  */
 
@@ -11,6 +14,7 @@ export const projects = [
   // ── 公开 ──
   {
     name: "useaitools-me",
+    kind: "web",
     desc: "面向全球的 AI 工具导航站，也是我坚持最久的一条线。",
     lang: "TypeScript",
     visibility: "public",
@@ -19,10 +23,14 @@ export const projects = [
     days: 156,
     status: "live",
     commits: 802,
+    url: "https://useaitools.me",
+    intro:
+      "把市面上真正好用的 AI 工具按用途分好类、写好中文点评，帮人少走弯路、不交智商税。内容审计、7 语种、SEO 全链路、GA4 全做了。5 个月里唯一没断过的项目，已用我的域名 useaitools.me 正式上线。",
     note: "802 次提交。内容审计脚本、185 条工具描述补齐、7 语种 i18n、SEO 全链路（JSON-LD / 内链 / 真 404）、PayPal + Turso + Prisma 打通、GA4 接入。5 个月里唯一没断过的项目。",
   },
   {
     name: "veggie-arena",
+    kind: "game",
     desc: "手机竖屏竞技场生存 Roguelite，用 Godot 4.3 做的完整游戏。",
     lang: "GDScript",
     visibility: "public",
@@ -31,10 +39,14 @@ export const projects = [
     days: 16,
     status: "live",
     commits: 30,
+    url: "https://aacc9a81e890dab49.app.workbuddy.host",
+    intro:
+      "选 10 种职业萝卜、捡 40 把武器，同一个按键因为你 build 不同能打出两招；难度会随你变强自动加码，金币结余被压到 10% 逼你冒险。架构最完整的一个，网页版现在就能直接玩。",
     note: "30+ 次提交。10 职业萝卜、40 把武器、技能变体（同一按键不同 build 是两招）、难度曲线自动闸门、经济系统重调（金币结余从 43% 压到 10%）、136 道具图标体系、性能帧率回归。架构最完整的一个，网页版已可玩。",
   },
   {
     name: "try-ai-writer",
+    kind: "app",
     desc: "AI 写作 SaaS（Next.js + DeepSeek / Creem 支付）。",
     lang: "TypeScript",
     visibility: "public",
@@ -43,10 +55,13 @@ export const projects = [
     days: 45,
     status: "stopped",
     commits: 82,
+    intro:
+      "品牌声音克隆、文档解析、积分订阅、Creem 支付闭环都做了，Google 也自动收录过。但核心数据走浏览器 localStorage，没有真正的服务端，算能跑的原型，已停更。",
     note: "82 次提交。Google 自动收录、品牌声音克隆、文档解析、积分订阅、联盟分销、Creem 支付闭环。核心数据存 localStorage，无服务端持久化——能跑，但不算真产品。",
   },
   {
     name: "RefreshSwitch",
+    kind: "tool",
     desc: "Windows 刷新率 / 分辨率一键切换工具。",
     lang: "Python",
     visibility: "public",
@@ -55,10 +70,13 @@ export const projects = [
     days: 1,
     status: "live",
     commits: 4,
+    intro:
+      "实时检测本机档位、超限自动回落，GUI 和命令行双入口，零第三方依赖。这是我唯一做完整、又天天在用的东西——bug 全是自己用出来的，所以质量反而最高。",
     note: "★ 17 个项目里唯一真正「完整」的。零第三方依赖，GUI + CLI 双入口，实时检测本机档位、超限自动回落。因为是自己天天要用，bug 全被自己撞出来了。",
   },
   {
     name: "devlog",
+    kind: "web",
     desc: "建站公开日志（保定网吧系列）。",
     lang: "Markdown",
     visibility: "public",
@@ -67,12 +85,15 @@ export const projects = [
     days: 1,
     status: "stopped",
     commits: 14,
+    intro:
+      "记录 2026 年 5 月 11 日到 17 日，那家网吧里怎么从 0 起步、10 小时立 Flag、又怎么被现实按着头的过程。",
     note: "14 篇日志，记录 5/11~5/17 的全过程。最后更新与变现追踪停更是同一天。",
   },
 
   // ── 私有 ──
   {
     name: "bottlesort",
+    kind: "game",
     desc: "魔法药水分拣·倒瓶子（微信 / 抖音 / H5 三端共用）。",
     lang: "JavaScript",
     visibility: "private",
@@ -81,10 +102,13 @@ export const projects = [
     days: 20,
     status: "building",
     commits: 21,
+    intro:
+      "液体做成连续生长、广告瓶钉死在固定位置、好友榜已经接通。完成度 95%，就差一个真实 AppID 提交上架——上架就能接广告变现。",
     note: "★ 完成度 95%，832 个测试。液体改成连续生长、广告瓶钉死第三行左下/右下、好友榜接通、触摸被打断不再替玩家倒水、棋盘扩到 18 格、点选只浮起被点中的那只。停在「提交上架」——AppID 还是占位符 wx0000000000000000。",
   },
   {
     name: "star-rift-miner",
+    kind: "game",
     desc: "星矿挖掘 + brick-breaker 打砖块（网页游戏）。",
     lang: "JavaScript",
     visibility: "private",
@@ -93,10 +117,13 @@ export const projects = [
     days: 118,
     status: "building",
     commits: 185,
+    intro:
+      "子弹能归航、高射速也不卡死，带存档和双语切换，代码量是我游戏里最大的。目前还没重新部署上线，源码可以看。",
     note: "第二长的项目，185 次提交，28MB，有 CI/CD。从 6 月修到 10 月：子弹归航、高射速爆炸卡死修复、存档延迟写入、中英文双语切换、GA4、Service Worker 缓存。连一行 README 都没有，但一直在动。",
   },
   {
     name: "mbti-china",
+    kind: "web",
     desc: "顶级 MBTI 性格测试网站（商业闭源）。",
     lang: "JavaScript",
     visibility: "private",
@@ -105,10 +132,13 @@ export const projects = [
     days: 41,
     status: "stopped",
     commits: 140,
+    intro:
+      "102 道题、付费解锁人格报告、海报分享、微信打赏，还做了全站多语言和 NPS 反馈闭环，是我打磨最细的一个。",
     note: "140 次提交。102 题 + 付费解锁 + 人格报告 + 海报分享 + 微信打赏；全站 i18n、NPS 反馈闭环、爽感增强系统（超级连击 / 随机彩蛋 / 解压模式 / 音效升级）、a11y 焦点管理。打磨最细的一个。",
   },
   {
     name: "go-ai-academy",
+    kind: "app",
     desc: "AI 围棋学习（Electron + 内置 KataGo 引擎）。",
     lang: "TypeScript",
     visibility: "private",
@@ -117,10 +147,13 @@ export const projects = [
     days: 16,
     status: "dead",
     commits: 57,
+    intro:
+      "死活题、名局、复盘讲解、能力雷达图都做了，Windows 打包流水线也通了。功能做完，但 Electron 分发太重、市场太小。",
     note: "57 次提交。死活题、名局、能力雷达图、复盘讲解、成长数据追踪、排行榜；Windows 打包流水线 + Vercel 部署。功能做完了，但 Electron 分发重、市场规模小。",
   },
   {
     name: "BetOptima",
+    kind: "app",
     desc: "投注优化系统（Vue 3 + FastAPI，宝塔部署）。",
     lang: "Vue",
     visibility: "private",
@@ -129,10 +162,13 @@ export const projects = [
     days: 11,
     status: "dead",
     commits: 29,
+    intro:
+      "官方 UI 复刻、仪表盘 + 历史修正模型、真实账户复盘接入都做了。但合规风险高，能力和游戏主线也不复用。",
     note: "29 次提交。官方 UI 复刻、仪表盘 + 历史修正模型、真实账户复盘接入；光部署就排错十几轮（SSH / OOM / SFTP / venv）。合规风险高，能力与主线不复用。",
   },
   {
     name: "puzzle-custom-game",
+    kind: "game",
     desc: "PuzzleCraft：拼图 + 实体拼图电商闭环。",
     lang: "TypeScript",
     visibility: "private",
@@ -141,10 +177,13 @@ export const projects = [
     days: 7,
     status: "building",
     commits: 18,
+    intro:
+      "上传照片 → 在线拼图 → 下单让工厂做成实体玩具。是我所有项目里商业模式最特别的一个，代码架构也最完整，只做了 7 天。",
     note: "★ 商业模式最独特的一个（上传照片 → 在线拼图 → 下单工厂做成实体玩具）。monorepo，auth + 云同步 + API 层 + server application 层 + 一键 setup + CI，文档齐全。只做了 7 天。",
   },
   {
     name: "qingyan-pinzuo",
+    kind: "app",
     desc: "清烟拼座（网吧无烟座位链小程序）。",
     lang: "JavaScript",
     visibility: "private",
@@ -153,10 +192,13 @@ export const projects = [
     days: 0,
     status: "dead",
     commits: 2,
+    intro:
+      "想法来自自己的生活观察——网吧里想找无烟座位。但市场实在太小，存活了 6 分钟。",
     note: "存活 6 分钟。想法有生活气息（来自网吧经历），但市场极小。",
   },
   {
     name: "dock-puzzle",
+    kind: "game",
     desc: "码头停泊·休闲解谜（船 / 四方向泊位 / 游客颜色队列）。",
     lang: "HTML",
     visibility: "private",
@@ -165,10 +207,13 @@ export const projects = [
     days: 0,
     status: "building",
     commits: 12,
+    intro:
+      "按真实的挪挪车机制重写，设计哲学最清晰——反惩罚化，让玩家不会因为一次失误就崩盘。卡在「手感确认与迭代」上。",
     note: "★ 单日从 v0.1 冲到 v0.6。按挪挪车真机制重写（船头 4 斜向 + 7 个 P 位 + 4 按钮）、暂停面板、排队人数、需求文档同步。设计哲学最清晰（反惩罚化），卡在「手感确认与迭代」。",
   },
   {
     name: "live-ai-helper",
+    kind: "tool",
     desc: "直播 AI 氛围助手（FunASR + Qwen3 + blivedm）。",
     lang: "Python",
     visibility: "private",
@@ -177,10 +222,13 @@ export const projects = [
     days: 1,
     status: "stopped",
     commits: 22,
+    intro:
+      "本地、免费的 AI 直播互动助手：主播能随时打断 AI、有图形化安装界面。技术很时髦，但和游戏主线无关。",
     note: "22 次提交。本地 / 免费 AI 直播互动：TTS 双引擎、主播随时打断 AI、图形化安装界面（带进度条）、Ollama 国内多镜像、大量安装器回归修复（v2.3.0~v2.3.11）。技术时髦，与游戏主线无关。",
   },
   {
     name: "sub2api",
+    kind: "tool",
     desc: "API 中转（自用）。",
     lang: "Python",
     visibility: "private",
@@ -189,10 +237,12 @@ export const projects = [
     days: 0,
     status: "dead",
     commits: 4,
+    intro: "自己用着方便的小工具，存活 1 小时。",
     note: "存活 1 小时。自用工具。",
   },
   {
     name: "dsh-freeapi-pack",
+    kind: "tool",
     desc: "免费 API 聚合一键安装包。",
     lang: "PowerShell",
     visibility: "private",
@@ -201,10 +251,12 @@ export const projects = [
     days: 0,
     status: "dead",
     commits: 4,
+    intro: "免费 API 聚合，双击即用的安装包，存活 1.5 小时。",
     note: "存活 1.5 小时。自用工具。",
   },
   {
     name: "devlog-private",
+    kind: "note",
     desc: "私有开发日志与账号信息。",
     lang: "—",
     visibility: "private",
@@ -213,6 +265,7 @@ export const projects = [
     days: 10,
     status: "stopped",
     commits: 9,
+    intro: "记录每天的投入、收入与想法，不对外公开。",
     note: "里面有 revenue/progress.md —— 停在 2026-05-16，累计收入 ¥0。",
   },
 ];
@@ -222,3 +275,4 @@ export const totalCommits = projects.reduce((s, p) => s + (p.commits || 0), 0);
 export const byStatus = (s) => projects.filter((p) => p.status === s);
 export const publicCount = projects.filter((p) => p.visibility === "public").length;
 export const privateCount = projects.filter((p) => p.visibility === "private").length;
+export const hasLiveUrl = projects.filter((p) => p.url).length;
