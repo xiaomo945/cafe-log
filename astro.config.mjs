@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
-  site: "https://cafeeai.tools",
+  site: "https://cafeaitools.com",
   output: "static",
   integrations: [mdx()],
   markdown: {
