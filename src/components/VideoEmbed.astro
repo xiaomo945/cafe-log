@@ -1,0 +1,212 @@
+---
+/**
+ * 视频嵌入组件
+ *
+ * 需求：既能在博客里直接播放，也能跳转到原平台观看。
+ * 支持：YouTube / TikTok / Bilibili / Vimeo / 直链视频文件
+ *
+ * 用法（在 Markdown 里直接写）：
+ *   <VideoEmbed platform="youtube" id="dQw4w9WgXcQ" title="标题" />
+ *   <VideoEmbed platform="tiktok" id="7234567890123456789" title="标题" />
+ *   <VideoEmbed platform="bilibili" id="BV1xx411c7mD" title="标题" />
+ *   <VideoEmbed platform="file" src="/videos/intro.mp4" title="标题" poster="/img/cover.jpg" />
+ */
+
+interface Props {
+  platform: "youtube" | "tiktok" | "bilibili" | "vimeo" | "file";
+  id?: string;
+  src?: string;
+  title?: string;
+  poster?: string;
+  /** 自动播放（默认关闭，避免打扰阅读） */
+  autoplay?: boolean;
+}
+
+const { platform, id = "", src = "", title = "视频", poster = "", autoplay = false } = Astro.props;
+
+// 生成各平台的嵌入地址
+function buildEmbed() {
+  switch (platform) {
+    case "youtube":
+      return `https://www.youtube-nocookie.com/embed/${id}${autoplay ? "?autoplay=1" : ""}`;
+    case "bilibili":
+      return `//player.bilibili.com/player.html?bvid=${id}&high_quality=1&danmaku=0`;
+    case "vimeo":
+      return `https://player.vimeo.com/video/${id}`;
+    default:
+      return "";
+  }
+}
+
+// 生成跳转原平台的链接
+function buildLink() {
+  switch (platform) {
+    case "youtube":
+      return `https://www.youtube.com/watch?v=${id}`;
+    case "tiktok":
+      return `https://www.tiktok.com/video/${id}`;
+    case "bilibili":
+      return `https://www.bilibili.com/video/${id}`;
+    case "vimeo":
+      return `https://vimeo.com/${id}`;
+    default:
+      return src;
+  }
+}
+
+const platformName = {
+  youtube: "YouTube",
+  tiktok: "TikTok",
+  bilibili: "哔哩哔哩",
+  vimeo: "Vimeo",
+  file: "本地视频",
+}[platform];
+
+const embedUrl = buildEmbed();
+const linkUrl = buildLink();
+const isIframe = platform !== "tiktok" && platform !== "file";
+const uid = `v-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<figure class="video-embed">
+  <div class="ve-head">
+    <span class="ve-platform">{platformName}</span>
+    {
+      linkUrl && (
+        <a class="ve-jump" href={linkUrl} target="_blank" rel="noopener noreferrer">
+          在 {platformName} 观看 ↗
+        </a>
+      )
+    }
+  </div>
+
+  <div class="ve-frame">
+    {
+      isIframe ? (
+        <iframe
+          src={embedUrl}
+          title={title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        />
+      ) : platform === "file" ? (
+        <video
+          src={src}
+          poster={poster || undefined}
+          controls
+          preload="metadata"
+          playsinline
+        />
+      ) : (
+        /* TikTok：官方嵌入走 blockquote + 脚本懒加载 */
+        <div class="ve-tiktok" id={uid}>
+          <blockquote
+            class="tiktok-embed"
+            cite={`https://www.tiktok.com/video/${id}`}
+            data-video-id={id}
+          >
+            <section></section>
+          </blockquote>
+          <a class="ve-tiktok-fallback" href={linkUrl} target="_blank" rel="noopener noreferrer">
+            ▶ 点击在 TikTok 观看
+          </a>
+        </div>
+      )
+    }
+  </div>
+
+  {title && <figcaption>{title}</figcaption>}
+</figure>
+
+{platform === "tiktok" && (
+  <script is:inline define:vars={{ uid }}>
+    (function () {
+      var el = document.getElementById(uid);
+      if (!el) return;
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          if (!document.querySelector('script[src*="tiktok.com/embed.js"]')) {
+            var s = document.createElement("script");
+            s.src = "https://www.tiktok.com/embed.js";
+            s.async = true;
+            document.body.appendChild(s);
+          }
+          io.disconnect();
+        }
+      });
+      io.observe(el);
+    })();
+  </script>
+)}
+
+<style>
+  .video-embed {
+    margin: 30px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .ve-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg-soft);
+  }
+
+  .ve-platform {
+    font-size: 0.76rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    letter-spacing: 0.03em;
+  }
+
+  .ve-jump {
+    font-size: 0.78rem;
+    color: var(--amber);
+  }
+  .ve-jump:hover {
+    text-decoration: underline;
+  }
+
+  .ve-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .ve-frame iframe,
+  .ve-frame video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* TikTok 竖屏，用更窄的容器避免大片黑边 */
+  .ve-frame .ve-tiktok {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  .ve-tiktok-fallback {
+    font-size: 0.9rem;
+    color: var(--amber);
+  }
+
+  figcaption {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border-soft);
+  }
+</style>
