@@ -2,7 +2,17 @@
  * 收支账本
  * 投入和收入分开记 —— 不合并，不互相抵消。
  * 原始数据来源：devlog-private/revenue/progress.md
+ *
+ * 关于「跑车收入」：这是每天生活的底，不是项目的收入，所以单独记在这里做背景。
+ * 最近两个月一天平均 30 块左右；5 月份行情好时一天能跑 100~150 块。
+ * 下文 costs / income 只记「项目相关的钱」，跑车收入不混进去。
  */
+
+// 跑车日收入（背景，不参与项目盈亏计算）
+export const runIncome = [
+  { period: "2026-05", avg: "100~150 / 天", note: "行情好的月份" },
+  { period: "2026-08 → 10", avg: "≈30 / 天", note: "最近两个月，收入在往下走" },
+];
 
 export const costs = [
   { date: "2026-05-11", item: "useaitools.me 主站域名", amount: 135, note: "项目的起点" },
