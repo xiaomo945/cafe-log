@@ -1,82 +1,117 @@
 # 部署状态
 
-## ✅ 已上线
+## ✅ 已上线 · Git 自动部署
 
 | 项 | 值 |
 |:---|:---|
-| **正式网址** | **https://cafeaitools.com** |
-| www | https://www.cafeaitools.com （自动跳转） |
-| 备用地址 | https://cafe-log-9ce.pages.dev |
+| **网址** | **https://cafeaitools.com** |
+| www | https://www.cafeaitools.com |
+| 备用 | https://cafeaitools.pages.dev |
 | 平台 | Cloudflare Pages |
-| 状态 | 两个域名均 `active`，证书已签发（Google CA） |
+| 部署方式 | **push 到 GitHub 自动触发** |
 
-全站 7 个页面已验证返回 200：
-`/`、`/timeline/`、`/ledger/`、`/projects/`、`/posts/`、`/about/`、`/posts/2026-10-15-facing-myself/`
+7 个页面全部 200。
 
 ---
 
-## 部署信息（以后更新用）
+## 自动部署怎么工作
+
+```
+你改内容 → git push 到 main
+              ↓
+   GitHub Actions 自动触发（.github/workflows/deploy.yml）
+              ↓
+   npm ci → npm run build → wrangler pages deploy
+              ↓
+   Cloudflare Pages 更新，约 30 秒生效
+```
+
+**你只需要做一件事：`git push`。**
+
+在 GitHub 网页上也能手动触发：
+仓库 → Actions → 「部署到 Cloudflare Pages」→ Run workflow
+
+---
+
+## 部署信息
 
 ```
 Cloudflare Account ID : 22b57986d4c786f3a92f2e9652a6c986
-Pages 项目名          : cafe-log
+Pages 项目名          : cafeaitools
+Pages 地址            : cafeaitools.pages.dev
+GitHub 仓库           : xiaomo945/cafe-log
 生产分支              : main
-cafeaitools.com Zone  : e6fa6883ef054dc79884164c0e232490
+构建命令              : npm run build
+输出目录              : dist
 ```
 
-API Token 已保存在：
+**仓库 Secrets**（已配置，Actions 用）：
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+
+本地 token 也在：
 - `~/.zshrc.d/cloudflare_token.sh`
 - `~/.bashrc.d/cloudflare_token.sh`
 
-（权限 600，导出 `CLOUDFLARE_API_TOKEN` / `CF_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID`）
-
 ---
 
-## 以后怎么更新网站
-
-### 方式一：一行命令（推荐）
-
-改完内容后，在项目根目录执行：
+## 日常更新
 
 ```bash
-cd cafe-log
-npm run build
-npx wrangler pages deploy dist --project-name cafe-log --branch main
+# 写完文章后
+git add .
+git commit -m "日志：xxx"
+git push
 ```
 
-Wrangler 会自动读取环境变量里的 token，不用再登录。
-部署完约 30 秒生效。
+推完等 1~2 分钟，刷新 https://cafeaitools.com 就能看到。
 
-### 方式二：连 GitHub 自动部署
-
-在 Cloudflare Dashboard → Workers & Pages → cafe-log → **连接到 Git**，
-选 `xiaomo945/cafe-log` 仓库，以后 push 就自动部署。
-
-构建配置填：
-```
-构建命令     : npm run build
-输出目录     : dist
-```
-
-> 注意：两种方式选一个。如果接了 Git，之后就用 push 触发，
-> 不要再手动 `wrangler deploy`，否则会冲突。
+想看构建过程：https://github.com/xiaomo945/cafe-log/actions
 
 ---
 
-## DNS 记录现状
+## 本地预览
 
-| 类型 | 名称 | 指向 | 说明 |
-|:---|:---|:---|:---|
-| CNAME | cafeaitools.com | cafe-log-9ce.pages.dev | 根域名，走 CNAME flattening |
-| CNAME | www.cafeaitools.com | cafeaitools.com | 跟主域名走 |
-
-> 原本有一条 `A cafeaitools.com → 47.76.60.100`，
-> 探测确认该 IP 已无服务响应（连接超时、域名返回 521），
-> 属于失效记录，已安全替换为 CNAME。
+```bash
+npm run dev    # http://localhost:4321
+```
 
 ---
 
-## 域名成本
+## 踩过的坑（都解决了）
 
-`cafeaitools.com` 是 2026-05-15 购入的，¥85。
-当时在收支表里标注为「未来项目」——现在它成了这个站。
+### 1. 直接上传项目无法改成 Git 源
+
+Cloudflare 限制：Direct Uploads 项目的 `source` 不可修改，
+报 `You cannot update the source object in a Direct Uploads project`。
+
+**解决**：新建了一个 Git 源项目 `cafeaitools`，构建成功后把域名切过去，
+再删掉旧的 `cafe-log` 项目。切换期间网站未中断。
+
+### 2. Cloudflare 原生 Git 集成没有真正生效
+
+API 显示项目已连 GitHub，但仓库里查不到任何 webhook（`hooks` 返回 `[]`）——
+说明 Cloudflare 的 GitHub App 授权没覆盖到这个新建的仓库，推送不会触发构建。
+
+**解决**：改用 GitHub Actions 部署，不依赖 OAuth 授权，完全可控。
+
+> 如果以后想在 Cloudflare Dashboard 里也看到构建记录，
+> 需要去 GitHub → Settings → Applications → Cloudflare Pages → Configure，
+> 把 `cafe-log` 加进授权仓库列表。
+> **注意**：那样会和 Actions 重复部署，二选一即可。
+
+### 3. 缺 package-lock.json 导致 CI 失败
+
+`npm ci` 需要 lock 文件，第一次上传时漏了，Actions 报
+`Dependencies lock file is not found`。补传后正常。
+
+---
+
+## DNS 记录
+
+| 类型 | 名称 | 指向 |
+|:---|:---|:---|
+| CNAME | cafeaitools.com | cafeaitools.pages.dev |
+| CNAME | www.cafeaitools.com | cafeaitools.com |
+
+> 原有一条 `A cafeaitools.com → 47.76.60.100`（已无服务响应），已替换。
