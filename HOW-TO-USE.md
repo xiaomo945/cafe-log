@@ -1,4 +1,4 @@
-# cafeeai.tools · 使用说明
+# cafeaitools.com · 使用说明
 
 站点源码已推送到 https://github.com/xiaomo945/cafe-log
 
@@ -13,12 +13,12 @@
    - Output Directory: `dist`
 4. 点 **Deploy**，等约 1 分钟
 
-### 绑定域名 cafeeai.tools
+### 绑定域名 cafeaitools.com
 
 部署成功后：
 
 1. 进入项目 → **Settings** → **Domains**
-2. 输入 `cafeeai.tools`，点 Add
+2. 输入 `cafeaitools.com`，点 Add
 3. Vercel 会提示需要添加的 DNS 记录，通常是：
    ```
    类型: A      名称: @      值: 216.198.79.1
@@ -27,7 +27,8 @@
 4. 去你的域名注册商（或 Cloudflare，如果 NS 已经迁过去）添加这两条记录
 5. 等 DNS 生效（几分钟到几小时），Vercel 会自动签发 SSL 证书
 
-> 建议同时把 `www.cafeeai.tools` 也加上，Vercel 会自动做跳转。
+> 建议同时把 `www.cafeaitools.com` 也加上，Vercel 会自动做跳转。
+> 这个域名是 2026-05-15 买的（¥85），当时标注「未来项目」——现在它派上用场了。
 
 ---
 
@@ -148,7 +149,7 @@ npm run dev     # 打开 http://localhost:4321
 | 内容格式 | MDX | 文章里能直接插视频/图片组件 |
 | 样式 | 手写 CSS | 无框架依赖，加载快 |
 | 部署 | Vercel | 免费、自动 HTTPS、push 即部署 |
-| 域名 | cafeeai.tools | — |
+| 域名 | cafeaitools.com | 2026-05-15 购入，¥85 |
 
 选 Astro 4 而不是 5：Astro 5 要求 Node ≥ 22.19，Vercel 默认环境更稳的是 4.x。
 
