@@ -1,0 +1,80 @@
+---
+import "../styles/global.css";
+import VideoEmbed from "../components/VideoEmbed.astro";
+import ImageFigure from "../components/ImageFigure.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: string;
+}
+
+const {
+  title,
+  description = "从一个网吧开始的 AI 创业记录。157 天，17 个项目，¥0 收入。",
+  active = "",
+} = Astro.props;
+
+const nav = [
+  { href: "/", label: "起点", key: "home" },
+  { href: "/timeline", label: "时间线", key: "timeline" },
+  { href: "/ledger", label: "收支", key: "ledger" },
+  { href: "/projects", label: "项目", key: "projects" },
+  { href: "/posts", label: "日志", key: "posts" },
+  { href: "/about", label: "关于", key: "about" },
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · cafeeai.tools</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- SEO -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="cafeeai.tools" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- 让 VideoEmbed / ImageFigure 在 Markdown 里可直接用 -->
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="wrap inner">
+        <a href="/" class="brand">cafeeai<span class="dot">.</span>tools</a>
+        <nav class="nav">
+          {
+            nav.map((n) => (
+              <a href={n.href} class={active === n.key ? "active" : ""}>
+                {n.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          cafeeai.tools — 记录从 2026-05-11 保定一家网吧开始的那条路。
+        </p>
+        <p>
+          至今 157 天 · 17 个项目 · 投入 ¥438 · 收入 ¥0。
+          <br />
+          如果哪天这个站有意义了，那是因为它记下了还没成功时的样子。
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
