@@ -176,11 +176,12 @@ export const projects = [
     created: "2026-09-24",
     pushed: "2026-10-01",
     days: 7,
-    status: "building",
+    status: "live",
     commits: 18,
+    url: "https://shouyou.me/puzzle/",
     intro:
-      "上传照片 → 在线拼图 → 下单让工厂做成实体玩具。是我所有项目里商业模式最特别的一个，代码架构也最完整，只做了 7 天。将接入 shouyou.me 游戏合集。",
-    note: "★ 商业模式最独特的一个（上传照片 → 在线拼图 → 下单工厂做成实体玩具）。monorepo，auth + 云同步 + API 层 + server application 层 + 一键 setup + CI，文档齐全。只做了 7 天。",
+      "选图即玩，也能上传自己的照片在线拼——纯浏览器处理，不上传服务器。拼图游戏已上线 shouyou.me；「下单做成实体拼图」的电商部分正在开发，先上了预告页。",
+    note: "★ 商业模式最独特的一个（上传照片 → 在线拼图 → 下单工厂做成实体玩具）。monorepo，auth + 云同步 + API 层 + server application 层 + 一键 setup + CI，文档齐全。只做了 7 天。上线时修了一个真 bug：开局回调在画布挂载前读 canvasRef，导致点难度无反应——把建引擎挪到 effect 后解决。",
   },
   {
     name: "qingyan-pinzuo",
