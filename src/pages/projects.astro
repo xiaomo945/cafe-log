@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { projects, publicCount, privateCount, totalCommits } from "../data/projects.js";
+import { projects, publicCount, privateCount, totalCommits, hasLiveUrl } from "../data/projects.js";
 
 const statusMeta = {
   live: { text: "已上线", cls: "live" },
@@ -9,21 +9,36 @@ const statusMeta = {
   dead: { text: "建议放弃", cls: "stop" },
 };
 
+const kindMeta = {
+  web: "网页",
+  game: "游戏",
+  tool: "工具",
+  app: "应用",
+  note: "记录",
+};
+
+const playable = projects.filter((p) => p.kind === "game").length;
+
 // 按存活天数排序
 const sorted = [...projects].sort((a, b) => b.days - a.days);
 ---
 
-<BaseLayout title="项目" description="157 天，17 个项目。每一个都记录在这里。" active="projects">
+<BaseLayout
+  title="项目"
+  description="157 天，17 个项目。每一个都留了去处——能打开的给网址，没上线的给 GitHub 源码。"
+  active="projects"
+>
   <h1>项目</h1>
   <p style="color: var(--text-dim);">
     157 天，{projects.length} 个项目（公开 {publicCount} + 私有 {privateCount}）。
-    按存活天数排序。每个项目的 note 都来自真实提交记录——到底做了什么，不是一句话。
+    每个都留了去处：<strong style="color: var(--amber);">能打开的给网址，没上线的给 GitHub 源码</strong>。
+    按存活天数排序。
   </p>
 
   <div class="stats">
     <div class="stat"><span class="num">{projects.length}</span><span class="label">总项目</span></div>
-    <div class="stat amber"><span class="num">3</span><span class="label">已上线</span></div>
-    <div class="stat"><span class="num">4</span><span class="label">进行中</span></div>
+    <div class="stat amber"><span class="num">{hasLiveUrl}</span><span class="label">在线可访问</span></div>
+    <div class="stat"><span class="num">{playable}</span><span class="label">游戏</span></div>
     <div class="stat blue"><span class="num">{totalCommits}</span><span class="label">次提交</span></div>
   </div>
 
@@ -32,12 +47,11 @@ const sorted = [...projects].sort((a, b) => b.days - a.days);
   {
     sorted.map((p) => {
       const s = statusMeta[p.status];
+      const github = `https://github.com/xiaomo945/${p.name}`;
       return (
         <div class="card">
           <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;">
-            <strong style="font-size: 1.05rem;">
-              {p.name}
-            </strong>
+            <strong style="font-size: 1.05rem;">{p.name}</strong>
             <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint);">
               {p.days > 0 ? `${p.days} 天` : "不足 1 天"}
             </span>
@@ -45,20 +59,34 @@ const sorted = [...projects].sort((a, b) => b.days - a.days);
 
           <div style="margin: 8px 0 10px;">
             <span class={`tag ${s.cls}`}>{s.text}</span>
+            <span class="tag">{kindMeta[p.kind]}</span>
             <span class="tag">{p.visibility === "public" ? "公开" : "私有"}</span>
             <span class="tag">{p.lang}</span>
           </div>
 
-          <p style="margin: 0 0 8px; color: var(--text-dim); font-size: 0.95rem;">
+          <p style="margin: 0 0 8px; color: var(--text); font-size: 0.97rem; font-weight: 600;">
             {p.desc}
           </p>
-          <p style="margin: 0; font-size: 0.9rem;">{p.note}</p>
+          <p style="margin: 0 0 8px; color: var(--text-dim); font-size: 0.95rem;">
+            {p.intro}
+          </p>
+          <p style="margin: 0; font-size: 0.86rem; color: var(--text-faint);">{p.note}</p>
 
           <div
-            style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-faint); display: flex; gap: 14px; flex-wrap: wrap;"
+            style="margin-top: 14px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;"
           >
-            <span>{p.created} → {p.pushed}</span>
-            <span>{p.commits} 次提交</span>
+            {p.url ? (
+              <a class="card-link" href={p.url} target="_blank" rel="noopener">
+                {p.kind === "game" ? "▶ 玩一玩" : "↗ 打开网站"}
+              </a>
+            ) : (
+              <a class="card-link ghost" href={github} target="_blank" rel="noopener">
+                {p.visibility === "private" ? "🔒 私有源码" : "↗ 看源码"}
+              </a>
+            )}
+            <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-faint);">
+              {p.created} → {p.pushed} · {p.commits} 次提交
+            </span>
           </div>
         </div>
       );
