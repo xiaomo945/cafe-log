@@ -538,3 +538,39 @@ main.wrap {
     scroll-behavior: auto !important;
   }
 }
+
+/* ============ 项目外链按钮 + 网格（导流用） ============ */
+
+.card-link {
+  display: inline-block;
+  padding: 7px 16px;
+  border: 1px solid var(--amber);
+  border-radius: 999px;
+  color: var(--amber);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease),
+    transform 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.card-link:hover {
+  background: var(--amber);
+  color: #1a1206;
+  transform: translateY(-1px);
+}
+.card-link.ghost {
+  border-color: var(--border);
+  color: var(--text-dim);
+}
+.card-link.ghost:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+  gap: 16px;
+  margin: 20px 0 8px;
+}
