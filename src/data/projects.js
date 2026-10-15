@@ -104,7 +104,7 @@ export const projects = [
     url: "https://shouyou.me/bottlesort/",
     intro:
       "液体做成连续生长、广告瓶钉死在固定位置、好友榜已经接通。网页版已上线 shouyou.me，纯网页就能玩；微信/抖音端完成度 95%，就差一个真实 AppID 提交上架——上架就能接广告变现。",
-    note: "★ 完成度 95%，832 个测试。液体改成连续生长、广告瓶钉死第三行左下/右下、好友榜接通、触摸被打断不再替玩家倒水、棋盘扩到 18 格、点选只浮起被点中的那只。停在「提交上架」——AppID 还是占位符 wx0000000000000000。",
+    note: "★ 完成度 95%，832 个测试。液体改成连续生长、广告瓶钉死第三行左下/右下、好友榜接通、触摸被打断不再替玩家倒水、棋盘扩到 18 格、点选只浮起被点中的那只。停在「提交上架」——AppID 还是占位符 wx0000000000000000。网页版已拆成独立的 bottlesort-web 仓库单独部署到 shouyou.me/bottlesort/，并预留了海外广告适配层（Unity / AdSense），与微信/抖音仓库完全分离。",
   },
   {
     name: "star-rift-miner",
@@ -174,14 +174,14 @@ export const projects = [
     lang: "TypeScript",
     visibility: "private",
     created: "2026-09-24",
-    pushed: "2026-10-01",
-    days: 7,
+    pushed: "2026-10-15",
+    days: 21,
     status: "live",
-    commits: 18,
+    commits: 19,
     url: "https://shouyou.me/puzzle/",
     intro:
-      "选图即玩，也能上传自己的照片在线拼——纯浏览器处理，不上传服务器。拼图游戏已上线 shouyou.me；「下单做成实体拼图」的电商部分正在开发，先上了预告页。",
-    note: "★ 商业模式最独特的一个（上传照片 → 在线拼图 → 下单工厂做成实体玩具）。monorepo，auth + 云同步 + API 层 + server application 层 + 一键 setup + CI，文档齐全。只做了 7 天。上线时修了一个真 bug：开局回调在画布挂载前读 canvasRef，导致点难度无反应——把建引擎挪到 effect 后解决。",
+      "选图即玩，也能上传自己的照片在线拼——纯浏览器处理，不上传服务器。网页版用补齐后的完整真实代码重建，并克隆成独立的 puzzle-web 仓库单独部署到 shouyou.me/puzzle/，与微信/原生仓库彻底分离；「下单做成实体拼图」的电商部分先上了预告页。",
+    note: "★ 商业模式最独特的一个（上传照片 → 在线拼图 → 下单工厂做成实体玩具）。曾因为没把代码推上仓库、线上只有空壳；补齐完整代码后，克隆出独立的 puzzle-web 网页仓库，用 Vite 重新构建上线——上传照片 → 选难度 → 进入棋盘整条链路实测可玩。与微信/原生仓库 puzzle-custom-game 完全分离，以后网页版改动只动 puzzle-web。",
   },
   {
     name: "qingyan-pinzuo",
