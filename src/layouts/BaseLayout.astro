@@ -15,6 +15,42 @@ const {
   active = "",
 } = Astro.props;
 
+const SITE = "https://cafeaitools.com";
+
+// 规范链接：统一带尾斜杠，与 sitemap 保持一致，避免重复内容
+const pathname = Astro.url.pathname.endsWith("/")
+  ? Astro.url.pathname
+  : Astro.url.pathname + "/";
+const canonical = new URL(pathname, SITE).href;
+
+// 站点级结构化数据：WebSite + Person（保定出租车司机 / 独立开发者）
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#website`,
+      url: SITE,
+      name: "cafeaitools.com",
+      description:
+        "保定出租车司机，一天 30 块，用 AI 做产品与游戏的真实记录：163 天、20 个项目、投入 ¥438、收入 ¥0。",
+      inLanguage: "zh-CN",
+      publisher: { "@id": `${SITE}/#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE}/#person`,
+      name: "xiaomo945",
+      url: SITE,
+      jobTitle: "出租车司机 / 独立开发者",
+      description:
+        "河北保定出租车司机。2026 年 5 月起，在收车之后的时间学 AI、写代码、做产品与游戏。",
+      sameAs: ["https://github.com/xiaomo945"],
+      knowsAbout: ["AI 工具", "独立开发", "Godot 游戏开发", "SEO"],
+    },
+  ],
+};
+
 const nav = [
   { href: "/", label: "起点", key: "home" },
   { href: "/timeline", label: "时间线", key: "timeline" },
@@ -37,11 +73,20 @@ const nav = [
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <!-- SEO -->
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="cafeaitools.com" />
+    <meta property="og:image" content={`${SITE}/og-image.png`} />
+    <meta property="og:locale" content="zh_CN" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${SITE}/og-image.png`} />
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+    <!-- 各页面可注入自己的结构化数据（文章 / 项目 / FAQ 等） -->
+    <slot name="head" />
 
     <!-- Google Analytics（GA4）· 衡量 ID G-7B09SHWGWM · 全站统一统计 -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-7B09SHWGWM"></script>
