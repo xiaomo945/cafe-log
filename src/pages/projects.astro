@@ -21,6 +21,21 @@ const playable = projects.filter((p) => p.kind === "game").length;
 
 // 按存活天数排序
 const sorted = [...projects].sort((a, b) => b.days - a.days);
+
+// 结构化数据：把 20 个项目列成一个 ItemList，让搜索引擎看懂这个页面在讲什么
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "cafeaitools.com 的全部项目",
+  numberOfItems: projects.length,
+  itemListElement: projects.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: p.name,
+    url: `https://cafeaitools.com/projects/${p.name}/`,
+    description: p.desc,
+  })),
+};
 ---
 
 <BaseLayout
@@ -28,6 +43,8 @@ const sorted = [...projects].sort((a, b) => b.days - a.days);
   description="163 天，20 个项目。每一个都留了去处——能打开的给网址，没上线的给 GitHub 源码。"
   active="projects"
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(itemList)} />
+
   <h1>项目</h1>
   <p style="color: var(--text-dim);">
     163 天，{projects.length} 个项目（公开 {publicCount} + 私有 {privateCount}）。
@@ -51,7 +68,7 @@ const sorted = [...projects].sort((a, b) => b.days - a.days);
       return (
         <div class="card">
           <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;">
-            <strong style="font-size: 1.05rem;">{p.name}</strong>
+            <a class="project-name-link" href={`/projects/${p.name}/`}>{p.name}</a>
             <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint);">
               {p.days > 0 ? `${p.days} 天` : "不足 1 天"}
             </span>
@@ -79,11 +96,17 @@ const sorted = [...projects].sort((a, b) => b.days - a.days);
               <a class="card-link" href={p.url} target="_blank" rel="noopener">
                 {p.kind === "game" ? "▶ 玩一玩" : "↗ 打开网站"}
               </a>
-            ) : (
+            ) : p.visibility === "public" ? (
               <a class="card-link ghost" href={github} target="_blank" rel="noopener">
-                {p.visibility === "private" ? "🔒 私有源码" : "↗ 看源码"}
+                ↗ 看源码
               </a>
+            ) : (
+              // 私有仓库的 GitHub 地址对访客是 404，不做成链接，避免死链
+              <span style="font-size: 0.82rem; color: var(--text-faint);">
+                🔒 私有仓库
+              </span>
             )}
+            <a class="card-link ghost" href={`/projects/${p.name}/`}>详情 →</a>
             <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-faint);">
               {p.created} → {p.pushed} · {p.commits} 次提交
             </span>
@@ -123,4 +146,18 @@ const sorted = [...projects].sort((a, b) => b.days - a.days);
       </span>
     </p>
   </div>
+
+  <style>
+    .project-name-link {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .project-name-link:hover {
+      color: var(--amber);
+      border-bottom-color: var(--amber);
+    }
+  </style>
 </BaseLayout>
