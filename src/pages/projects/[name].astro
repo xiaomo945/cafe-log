@@ -133,6 +133,13 @@ const appSchema = {
       )
     }
     {
+      p.zip && (
+        <a class="card-link ghost" href={p.zip} target="_blank" rel="noopener">
+          ⬇ 下载 ZIP
+        </a>
+      )
+    }
+    {
       !p.url && !canLinkGithub && (
         <span style="font-size: 0.88rem; color: var(--text-faint);">
           私有仓库，源码未公开
@@ -174,7 +181,7 @@ const appSchema = {
   <hr />
 
   <p>
-    <a href="/projects">← 返回全部 20 个项目</a>
+    <a href="/projects">← 返回全部 21 个项目</a>
     {" · "}
     <a href="/">回到起点</a>
   </p>

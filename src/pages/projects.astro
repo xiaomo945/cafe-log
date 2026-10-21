@@ -22,7 +22,7 @@ const playable = projects.filter((p) => p.kind === "game").length;
 // 按存活天数排序
 const sorted = [...projects].sort((a, b) => b.days - a.days);
 
-// 结构化数据：把 20 个项目列成一个 ItemList，让搜索引擎看懂这个页面在讲什么
+// 结构化数据：把 21 个项目列成一个 ItemList，让搜索引擎看懂这个页面在讲什么
 const itemList = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -40,7 +40,7 @@ const itemList = {
 
 <BaseLayout
   title="项目"
-  description="163 天，20 个项目。每一个都留了去处——能打开的给网址，没上线的给 GitHub 源码。"
+  description="163 天，21 个项目。每一个都留了去处——能打开的给网址，公开仓库给源码还能直接下载 ZIP。"
   active="projects"
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(itemList)} />
@@ -48,7 +48,7 @@ const itemList = {
   <h1>项目</h1>
   <p style="color: var(--text-dim);">
     163 天，{projects.length} 个项目（公开 {publicCount} + 私有 {privateCount}）。
-    每个都留了去处：<strong style="color: var(--amber);">能打开的给网址，没上线的给 GitHub 源码</strong>。
+    每个都留了去处：<strong style="color: var(--amber);">能打开的给网址，公开仓库既能看源码、也能直接下载 ZIP</strong>。
     按存活天数排序。
   </p>
 
@@ -106,6 +106,11 @@ const itemList = {
                 🔒 私有仓库
               </span>
             )}
+            {p.zip && (
+              <a class="card-link ghost" href={p.zip} target="_blank" rel="noopener">
+                ⬇ 下载 ZIP
+              </a>
+            )}
             <a class="card-link ghost" href={`/projects/${p.name}/`}>详情 →</a>
             <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-faint);">
               {p.created} → {p.pushed} · {p.commits} 次提交
@@ -122,7 +127,7 @@ const itemList = {
     <p style="margin-top: 0;">
       <strong>1. 唯一坚持的两个，都是「建系统」不是「做游戏」</strong><br />
       <span style="color: var(--text-dim);">
-        useaitools.me（156 天）和 star-rift-miner（118 天）。纯游戏项目平均存活 10 天。
+        useaitools.me（156 天）和 star-rift-miner（118 天）。纯游戏项目平均存活 27 天——但去掉星矿这个异类，只剩 11 天。
       </span>
     </p>
   </div>
@@ -141,7 +146,7 @@ const itemList = {
     <p style="margin-top: 0;">
       <strong>3. 项目越做越短</strong><br />
       <span style="color: var(--text-dim);">
-        10 月的 5 个新项目平均存活不到 3 天：dock-puzzle 2 小时，sub2api 1 小时，qingyan-pinzuo 6 分钟。
+        10 月开了 9 个新项目，3 个没活过 2 小时：dock-puzzle 2 小时，sub2api 1 小时，dsh-freeapi-pack 1.5 小时。
         <strong style="color: var(--amber);">那是在「找方向」，不是在「做产品」。</strong>
       </span>
     </p>

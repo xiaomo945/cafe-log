@@ -1,9 +1,11 @@
 /**
- * 20 个项目（产品仓，不含 cafe-log / mind-vault 两个记录型仓库）
+ * 21 个项目（产品仓，不含 cafe-log / mind-vault / devlog-private 三个记录型仓库）
  * 数据来源：GitHub API（创建时间 / 最后推送时间 / 语言 / 可见性 / 作者提交数）
  * 每个项目的 note 都来自真实提交记录——到底做了什么，而不是只写一句话。
  * intro 是写给访客看的介绍（玩法 / 亮点 / 现状），让博客能给项目导流。
  * url 是该项目的线上地址（实测可打开才填）；没有 url 的，页面会挂 GitHub 源码链接。
+ * zip 是公开仓库的源码包直链（GitHub archive，点开即下载，不用进仓库页面找 Code 按钮）；
+ * 私有仓库访客打开 GitHub 就是 404，所以既不给 github 链接也不给 zip。
  *
  * status: live 已上线 | building 进行中 | stopped 已停 | dead 建议放弃
  * kind:   web 网页 | game 游戏 | tool 工具 | app 应用 | note 记录
@@ -24,6 +26,7 @@ export const projects = [
     status: "live",
     commits: 802,
     url: "https://useaitools.me",
+    zip: "https://github.com/xiaomo945/useaitools-me/archive/refs/heads/main.zip",
     intro:
       "把市面上真正好用的 AI 工具按用途分好类、写好中文点评，帮人少走弯路、不交智商税。内容审计、7 语种、SEO 全链路、GA4 全做了。5 个月里唯一没断过的项目，已用我的域名 useaitools.me 正式上线。",
     note: "802 次提交。内容审计脚本、185 条工具描述补齐、7 语种 i18n、SEO 全链路（JSON-LD / 内链 / 真 404）、PayPal + Turso + Prisma 打通、GA4 接入。5 个月里唯一没断过的项目。",
@@ -39,6 +42,7 @@ export const projects = [
     days: 16,
     status: "building",
     commits: 30,
+    zip: "https://github.com/xiaomo945/veggie-arena/archive/refs/heads/main.zip",
     intro:
       "选 10 种职业萝卜、捡 40 把武器，同一个按键因为你 build 不同能打出两招；难度会随你变强自动加码，金币结余被压到 10% 逼你冒险。架构最完整的一个，网页版已在做（目前是临时测试地址，正式版将上线 shouyou.me）。",
     note: "30+ 次提交。10 职业萝卜、40 把武器、技能变体（同一按键不同 build 是两招）、难度曲线自动闸门、经济系统重调（金币结余从 43% 压到 10%）、136 道具图标体系、性能帧率回归。架构最完整的一个，网页版已可玩。",
@@ -54,6 +58,7 @@ export const projects = [
     days: 45,
     status: "stopped",
     commits: 82,
+    zip: "https://github.com/xiaomo945/try-ai-writer/archive/refs/heads/main.zip",
     intro:
       "品牌声音克隆、文档解析、积分订阅、Creem 支付闭环都做了，Google 也自动收录过。但核心数据走浏览器 localStorage，没有真正的服务端，算能跑的原型，已停更。",
     note: "82 次提交。Google 自动收录、品牌声音克隆、文档解析、积分订阅、联盟分销、Creem 支付闭环。核心数据存 localStorage，无服务端持久化——能跑，但不算真产品。",
@@ -69,9 +74,10 @@ export const projects = [
     days: 1,
     status: "live",
     commits: 4,
+    zip: "https://github.com/xiaomo945/RefreshSwitch/archive/refs/heads/main.zip",
     intro:
       "实时检测本机档位、超限自动回落，GUI 和命令行双入口，零第三方依赖。这是我唯一做完整、又天天在用的东西——bug 全是自己用出来的，所以质量反而最高。",
-    note: "★ 20 个项目里唯一真正「完整」的。零第三方依赖，GUI + CLI 双入口，实时检测本机档位、超限自动回落。因为是自己天天要用，bug 全被自己撞出来了。",
+    note: "★ 21 个项目里唯一真正「完整」的。零第三方依赖，GUI + CLI 双入口，实时检测本机档位、超限自动回落。因为是自己天天要用，bug 全被自己撞出来了。",
   },
   {
     name: "devlog",
@@ -84,6 +90,7 @@ export const projects = [
     days: 1,
     status: "stopped",
     commits: 14,
+    zip: "https://github.com/xiaomo945/devlog/archive/refs/heads/main.zip",
     intro:
       "记录 2026 年 5 月 11 日到 17 日，那家网吧里怎么从 0 起步、10 小时立 Flag、又怎么被现实按着头的过程。",
     note: "14 篇日志，记录 5/11~5/17 的全过程。最后更新与变现追踪停更是同一天。",
@@ -228,6 +235,21 @@ export const projects = [
     intro:
       "本地、免费的 AI 直播互动助手：主播能随时打断 AI、有图形化安装界面。技术很时髦，但和游戏主线无关。",
     note: "22 次提交。本地 / 免费 AI 直播互动：TTS 双引擎、主播随时打断 AI、图形化安装界面（带进度条）、Ollama 国内多镜像、大量安装器回归修复（v2.3.0~v2.3.11）。技术时髦，与游戏主线无关。",
+  },
+  {
+    name: "RushGet",
+    kind: "tool",
+    desc: "多线程下载管理器（Tkinter，批量下载 + 断点续传 + MD5 校验）。",
+    lang: "Python",
+    visibility: "private",
+    created: "2026-10-19",
+    pushed: "2026-10-19",
+    days: 0,
+    status: "building",
+    commits: 2,
+    intro:
+      "给自己写的下载管理器：并发队列、批量下载、分类保存、MD5 校验——全是真下东西时会用到的功能。从 TDM Fast 改名 RushGet，一天冲到第 7 版。",
+    note: "2 次提交。v6→v7 改名 RushGet：并发队列、批量下载、设置、分类保存、MD5 校验。自己用得顺手的工具，零第三方依赖。",
   },
   {
     name: "sub2api",
