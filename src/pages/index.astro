@@ -5,17 +5,17 @@ import { totalCost, totalIncome } from "../data/ledger.js";
 import { projects, totalCommits } from "../data/projects.js";
 
 const start = new Date("2026-05-11");
-const now = new Date("2026-10-15");
+const now = new Date("2026-10-21");
 const days = Math.floor((now - start) / 86400000);
 
 // 首页只放关键节点
 const keyNodes = timeline.filter((t) => t.key);
 
-// 首页导流区：挑 4 个最能代表当前的项目（在线 + 重点游戏）
+// 首页导流区：挑最能代表当前的项目（在线 + 重点游戏 + 近期网页独立版）
 const statusText = { live: "已上线", building: "进行中", stopped: "已停", dead: "建议放弃" };
 const statusCls = { live: "live", building: "done", stopped: "stop", dead: "stop" };
 const kindText = { web: "网页", game: "游戏", tool: "工具", app: "应用", note: "记录" };
-const featured = ["useaitools-me", "veggie-arena", "bottlesort", "star-rift-miner"]
+const featured = ["useaitools-me", "veggie-arena", "bottlesort-web", "puzzle-web", "star-rift-miner"]
   .map((n) => projects.find((p) => p.name === n))
   .filter(Boolean);
 ---
@@ -53,7 +53,7 @@ const featured = ["useaitools-me", "veggie-arena", "bottlesort", "star-rift-mine
 
   <p style="margin-top: 22px; padding: 14px 18px; border-left: 3px solid var(--amber); background: var(--amber-glow); border-radius: 0 var(--radius) var(--radius) 0; color: #f5e6c8;">
     <strong style="color: var(--amber);">这几个月我没闲着。</strong>
-    19 个仓库、{totalCommits} 次提交，从 AI 工具站做到 Godot 游戏、倒瓶子小游戏、直播助手、刷新率工具。
+    23 个仓库、{totalCommits} 次提交，从 AI 工具站做到 Godot 游戏、倒瓶子小游戏、直播助手、刷新率工具。
     以前网站没把这些写出来，现在补上了——在 <a href="/projects">项目</a> 和 <a href="/timeline">时间线</a> 里，能看到每一份努力。
   </p>
 
@@ -147,7 +147,7 @@ const featured = ["useaitools-me", "veggie-arena", "bottlesort", "star-rift-mine
   </div>
 
   <p style="margin-top: 22px;">
-    <a href="/projects">看全部 17 个项目 →</a>
+    <a href="/projects">看全部 20 个项目 →</a>
   </p>
 
   <h2>关键节点</h2>
