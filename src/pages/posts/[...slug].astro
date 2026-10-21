@@ -13,11 +13,31 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
+const SITE = "https://cafeaitools.com";
+const postUrl = `${SITE}/posts/${post.slug}/`;
+
+// 文章结构化数据：BlogPosting（作者 / 发布时间 / 标签都来自真实数据）
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  ...(post.data.summary ? { description: post.data.summary } : {}),
+  datePublished: post.data.date.toISOString().slice(0, 10),
+  dateModified: post.data.date.toISOString().slice(0, 10),
+  url: postUrl,
+  mainEntityOfPage: postUrl,
+  author: { "@id": `${SITE}/#person` },
+  isPartOf: { "@id": `${SITE}/#website` },
+  inLanguage: "zh-CN",
+  ...(post.data.tags.length ? { keywords: post.data.tags.join(", ") } : {}),
+};
+
 const fmt = (d) =>
   d.toLocaleDateString("zh-CN", { year: "numeric", month: "long", day: "numeric" });
 ---
 
 <BaseLayout title={post.data.title} description={post.data.summary} active="posts">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleSchema)} />
   <article>
     <div
       style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--amber); margin-bottom: 8px;"
