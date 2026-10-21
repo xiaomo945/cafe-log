@@ -7,6 +7,19 @@ const statusLabel = {
   rejected: { text: "被拒", cls: "stop" },
   pending: { text: "待审核", cls: "" },
 };
+
+// 「天未更新」按账本里最新一笔的日期动态算，不再硬编码
+const lastLedgerDate = [
+  ...costs.map((c) => c.date),
+  ...income.map((i) => i.date),
+  ...affiliate.map((a) => a.date),
+]
+  .sort()
+  .pop();
+const daysIdle = Math.max(
+  0,
+  Math.floor((Date.now() - new Date(lastLedgerDate).getTime()) / 86400000)
+);
 ---
 
 <BaseLayout title="收支" description="投入 ¥438，收入 ¥0。两个数字分开记，不合并。" active="ledger">
@@ -29,7 +42,7 @@ const statusLabel = {
       <span class="label">净额</span>
     </div>
     <div class="stat amber">
-      <span class="num">151</span>
+      <span class="num">{daysIdle}</span>
       <span class="label">天未更新</span>
     </div>
   </div>
