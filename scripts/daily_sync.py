@@ -282,6 +282,9 @@ def sync_projects(workdir, repos, state, today):
                 log(f"  ⚠️ {name} 提交重数失败，保留旧值：{e}")
 
     # 博客自身不算「项目」：万一历史上被录进去过，这里清掉
+    removed = [p["name"] for p in projects if p["name"] in EXCLUDE_REPOS]
+    if removed:
+        changes.append(f"移出花名册（非项目仓库）：{', '.join(removed)}")
     projects = [p for p in projects if p["name"] not in EXCLUDE_REPOS]
 
     data["projects"] = projects
