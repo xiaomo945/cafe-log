@@ -28,7 +28,6 @@ export const income = [
 ];
 
 export const affiliate = [
-  { platform: "平台", tool: "工具", commission: "佣金", date: "申请日期", status: "pending", note: "状态" },
   { platform: "Rytr 官网", tool: "Rytr", commission: "30% / 12个月", date: "2026-05-15", status: "approved", note: "第一个拿下的联盟链接" },
   { platform: "Impact", tool: "AppSumo", commission: "100%新用户", date: "2026-05-13", status: "rejected", note: "被拒：新网站缺乏流量" },
   { platform: "PartnerStack", tool: "ElevenLabs", commission: "22% / 12个月", date: "2026-05-13", status: "rejected", note: "被拒：网吧 IP 风控误判" },

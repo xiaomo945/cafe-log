@@ -308,22 +308,6 @@
       "note": "刚开坑（2 次提交）。目标是一套后端同时接网页 AdSense、微信流量主、Steam 三套变现，再汇到统一看板。想法清晰，还没长出肉。"
     },
     {
-      "name": "cafe-log",
-      "kind": "tool",
-      "desc": "cafeeai.tools — 从一个网吧开始的 AI 创业记录",
-      "lang": "Astro",
-      "visibility": "public",
-      "created": "2026-10-14",
-      "pushed": "2026-10-21",
-      "days": 7,
-      "status": "building",
-      "commits": 82,
-      "url": null,
-      "intro": "cafeeai.tools — 从一个网吧开始的 AI 创业记录",
-      "note": "自动录入于 2026-10-21（GitHub 新仓库检测）。定性内容待手写润色。",
-      "zip": "https://github.com/xiaomo945/cafe-log/archive/refs/heads/main.zip"
-    },
-    {
       "name": "mind-vault",
       "kind": "note",
       "desc": "个人思维保险库：想法 / 方向 / 创意 / 未完成的事 / 关于我自己的全部记录",

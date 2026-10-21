@@ -1,7 +1,7 @@
 ---
 title: "流水账 · 2026-10-21"
 date: 2026-10-21
-summary: "9 个仓库动了，+66 次提交。cafe-log +19。"
+summary: "9 个仓库动了，+44 次提交。cafe-log +21。"
 tags: ["流水账", "自动记录"]
 ---
 
@@ -10,95 +10,75 @@ tags: ["流水账", "自动记录"]
 
 ## 今天动了什么
 
-**bottlesort-web**（+4）
+**bottlesort-web**（+2）
 - fix(links): 子页面加返回广场悬浮按钮 + 公开仓库 ZIP 直下载 + 修博客私有仓库死链
 - feat(i18n): 接入全站 i18n(自动识别系统语言+切换)，canvas 文字自动翻译
-- chore: 新增 bottlesort sitemap.xml（列出 /bottlesort/ 游戏页，lastmod 2026-10-2
-- fix(bottlesort): (1) adsenseSlot 填入 7663403912 修复复活弹层一直显示'广告ID待配置'占位 (
 
-**cafe-log**（+19）
+**cafe-log**（+21）
+- fix(daily): 修三个数据 bug——联盟表头被当数据行/示例注释金额混入收入/博客自身计入项目数；提交消息截断加省略号
+- chore(daily): 自动同步 2026-10-21（17 项数据变动 · 日记 +66 提交 · 账本更新 · og-image）
 - feat(daily): 全站数据层重构 + 每日自动同步脚本（抓 GitHub → 项目/账本/统计/日记 → 构建推送）
 - fix(links): 子页面加返回广场悬浮按钮 + 公开仓库 ZIP 直下载 + 修博客私有仓库死链
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- SEO: sitemap integration, 20 project detail pages, JSON-LD, og-image, 
-- Update cafeaitools.com: refresh stats to 163d/20 projects/23 repos, ad
-- Update cafeaitools.com: refresh stats to 163d/20 projects/23 repos, ad
-- Update cafeaitools.com: refresh stats to 163d/20 projects/23 repos, ad
-- Update cafeaitools.com: refresh stats to 163d/20 projects/23 repos, ad
-- Update cafeaitools.com: refresh stats to 163d/20 projects/23 repos, ad
-- Update cafeaitools.com: refresh stats to 163d/20 projects/23 repos, ad
-- Update cafeaitools.com: refresh stats to 163d/20 projects/23 repos, ad
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- SEO: sitemap integration, 20 project detail pages, JSON-LD,…
+- Update cafeaitools.com: refresh stats to 163d/20 projects/23…
+- Update cafeaitools.com: refresh stats to 163d/20 projects/23…
+- Update cafeaitools.com: refresh stats to 163d/20 projects/23…
+- Update cafeaitools.com: refresh stats to 163d/20 projects/23…
+- Update cafeaitools.com: refresh stats to 163d/20 projects/23…
+- Update cafeaitools.com: refresh stats to 163d/20 projects/23…
+- Update cafeaitools.com: refresh stats to 163d/20 projects/23…
 
 **devlog-private**（+1）
 - chore: 修正 ElevenLabs/Descript 联盟状态（PartnerStack 已驳回）
 
 **dock-puzzle**（有推送，无新提交）
 
-**mbti-china**（+12）
+**mbti-china**（+4）
 - feat: 真实测试数据匿名统计（/stats 页 + Serverless 聚合接口）
 - feat(backlink): 外链工具包 + 可嵌入类型徽章 + RSS 订阅
 - feat(content): 32 篇文章全部扩写完成，平均 1112 字 → 2807 字
 - feat(content): 文章扩写第一批（16/32），676~1012 字 → 2438~3067 字
-- chore: 临时工作文件 type_meta.json / urls.txt 移出版本库（保留本地）
-- feat(content): 16 个类型页正文全面扩写，1100 字 → 2200~3080 字
-- seo: 回填百度站点验证 meta（codeva-B0cgizGSLZ），待 360/搜狗验证码
-- fix(seo): 修复 32 篇文章 canonical/og:url/JSON-LD 域名被吃掉斜杠(此前指向 404 致文章全站不被收
-- feat(seo): 首页补静态内链区、内链去尾斜杠、字体改惰性加载、双域名 301 归一
-- fix: 移动端 1-5 序号徽章压住选项文字（断点 shorthand 覆盖了左内边距）；补刘海屏安全区，底部固定条/顶部横幅不再被状态栏
-- fix: 点遮罩空白关闭弹窗后恢复页面滚动（此前 body 一直 overflow:hidden，页面滚不动）
-- fix: 修掉全站遮挡 —— 加载层不再等 window.load（境内字体挂起时会永久盖住整站点击），提示条降到弹窗之下、toast 改为
 
 **puzzle-web**（+2）
 - fix(links): 子页面加返回广场悬浮按钮 + 公开仓库 ZIP 直下载 + 修博客私有仓库死链
 - feat(i18n): 接入全站 i18n(自动语言+切换)，语言切换时强制重渲染以还原中文
 
-**star-rift-miner**（+10）
+**star-rift-miner**（+6）
 - fix(links): 子页面加返回广场悬浮按钮 + 公开仓库 ZIP 直下载 + 修博客私有仓库死链
 - feat(srm): 死亡复活广告 — 看广告复活保留连击与星币，否则接受惩罚（重构第一步）
 - feat(i18n): 补 puzzle 导航(首页/开始制作/登录)与 9 张精选拼图的名称+描述英文词条
 - feat(i18n): 新增 DOM 文本节点翻译器(React/Vue 渲染文字也能翻)+puzzle 英文词条
 - feat(i18n): star-rift-miner 接入 i18n(自动语言+切换)，翻译首屏主按钮/暂停/更多菜单
-- feat(i18n): 新增 canvas fillText/strokeText 翻译钩子(游戏内画布文字自动翻译)+bottlesort
-- feat(i18n): 按系统语言自动识别(zh->中文/其余->英文)+落地页/about/攻略首页双语化，复用现有 i18n 引擎
-- chore: robots.txt 追加 bottlesort sitemap 自动发现
-- chore: sitemap.xml 全部 lastmod 刷到 2026-10-20（提示 Google 主动重抓）
-- fix(star-rift-miner): adbar 加'空填充保护'——没监到 iframe(无创意/CN)时整块隐藏 + 画布收回 +
+- feat(i18n): 新增 canvas fillText/strokeText…
 
-**useaitools-me**（+13）
+**useaitools-me**（+6）
 - seo: trim four titles past 60 chars in the newest roundup posts
-- fix: stop the homepage from advertising a fabricated tool count and ra
-- content: add 33 Show HN AI tools and four roundup posts that link to t
+- fix: stop the homepage from advertising a fabricated tool count…
+- content: add 33 Show HN AI tools and four roundup posts that link…
 - seo: trim 117 titles past 60 chars and 90 descriptions past 160
 - content: remove three tools whose landing pages were never the product
-- perf+content: stop shipping the tool dataset to the browser, and drop 
-- seo: server-render the blog archive so crawlers can actually reach the
-- content: merge duplicate Fireflies.ai and fix two tool names that bloc
-- content: remove fabricated ratings and numeric benchmarks from compari
-- ui: use the real monogram in the header and drop the redundant hero se
-- content: add 38 Show HN tools (1766-1803) with 4 linking articles
-- content: remove repeated labels, unbacked VPN claims and broken list s
-- content: add 54 Show HN tools (1712-1765) and 5 linking articles
+- perf+content: stop shipping the tool dataset to the browser, and…
 
-**veggie-arena**（+5）
+**veggie-arena**（+2）
 - style(shop): 一键购买 + 合成/刷新上移 + 图标放大 + 详情关闭键同排
 - feat(player): 冲刺方向改为鼠标瞄准（连续360°）+ 摇杆端保持模拟量
-- fix(player): 冲刺不再整体旋转（头朝下）+ 删除开局引导改按钮键位角标
-- fix(player): 冲刺原地变形无位移——位置更新被误缩进 else 分支
-- style(ui): 横屏按钮簇收拢贴右下——冲刺从左中孤岛改到攻击键右侧
 
 ## 数字
 
-- 统计窗口：10 月 20 日 06:32 → 10 月 21 日 18:32
-- 本次提交：66 次 · 9 个仓库
-- 累计提交：1900 次
-- 项目：23 个（7 个在线可访问）
+- 统计窗口：10 月 21 日 00:00 → 10 月 21 日 18:51
+- 本次提交：44 次 · 9 个仓库
+- 累计提交：1818 次
+- 项目：22 个（7 个在线可访问）
 - 坚持天数：第 163 天
-- 累计收入：¥12.5
+- 累计收入：¥0
+
+收入那一行还空着。第一笔进来的时候，这里会变。

@@ -6,11 +6,11 @@
 export const stats = {
   "asOf": "2026-10-21",
   "days": 163,
-  "projects": 23,
+  "projects": 22,
   "repos": 23,
-  "commits": 1900,
-  "commitBucket": "1900+",
+  "commits": 1818,
+  "commitBucket": "1800+",
   "cost": 438.0,
-  "income": 12.5,
+  "income": 0,
   "online": 7
 };
