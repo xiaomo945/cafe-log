@@ -4,13 +4,13 @@
  * 页面一律从这里读数字，不再硬编码——脚本换数，全站跟着变。
  */
 export const stats = {
-  asOf: "2026-10-21", // 数据日期（Asia/Shanghai）
-  days: 163, // 距 2026-05-11 的天数
-  projects: 21, // 产品仓数量
-  repos: 24, // 全部仓库数（含 cafe-log / mind-vault / devlog-private）
-  commits: 1469, // 总提交次数
-  commitBucket: "1400+", // 提交数约数（ prose 用）
-  cost: 438, // 累计投入 ¥
-  income: 0, // 累计收入 ¥
-  online: 7, // 在线可访问项目数
+  "asOf": "2026-10-21",
+  "days": 163,
+  "projects": 23,
+  "repos": 23,
+  "commits": 1900,
+  "commitBucket": "1900+",
+  "cost": 438.0,
+  "income": 12.5,
+  "online": 7
 };

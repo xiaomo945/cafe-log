@@ -1,0 +1,97 @@
+{
+  "last_run": "2026-10-21T18:33:11.478911+08:00",
+  "repos": {
+    "cafe-log": {
+      "pushed_at": "2026-10-21T10:29:24Z",
+      "commits": 82
+    },
+    "devlog-private": {
+      "pushed_at": "2026-10-21T10:23:08Z",
+      "commits": 11
+    },
+    "dock-puzzle": {
+      "pushed_at": "2026-10-21T09:08:33Z",
+      "commits": 12
+    },
+    "star-rift-miner": {
+      "pushed_at": "2026-10-21T09:01:07Z",
+      "commits": 283
+    },
+    "puzzle-web": {
+      "pushed_at": "2026-10-21T09:00:57Z",
+      "commits": 14
+    },
+    "bottlesort-web": {
+      "pushed_at": "2026-10-21T09:00:51Z",
+      "commits": 17
+    },
+    "veggie-arena": {
+      "pushed_at": "2026-10-21T05:16:39Z",
+      "commits": 39
+    },
+    "mbti-china": {
+      "pushed_at": "2026-10-21T04:12:55Z",
+      "commits": 302
+    },
+    "useaitools-me": {
+      "pushed_at": "2026-10-21T03:46:05Z",
+      "commits": 859
+    },
+    "xiaomo-games-backend": {
+      "pushed_at": "2026-10-19T20:13:10Z",
+      "commits": 2
+    },
+    "RushGet": {
+      "pushed_at": "2026-10-19T04:59:16Z",
+      "commits": 2
+    },
+    "try-ai-writer": {
+      "pushed_at": "2026-10-15T17:48:37Z",
+      "commits": 88
+    },
+    "puzzle-custom-game": {
+      "pushed_at": "2026-10-15T12:03:01Z",
+      "commits": 19
+    },
+    "mind-vault": {
+      "pushed_at": "2026-10-14T18:01:22Z",
+      "commits": 13
+    },
+    "live-ai-helper": {
+      "pushed_at": "2026-10-13T13:50:05Z",
+      "commits": 22
+    },
+    "RefreshSwitch": {
+      "pushed_at": "2026-10-12T20:16:51Z",
+      "commits": 4
+    },
+    "dsh-freeapi-pack": {
+      "pushed_at": "2026-10-08T21:15:15Z",
+      "commits": 4
+    },
+    "sub2api": {
+      "pushed_at": "2026-10-08T18:57:55Z",
+      "commits": 4
+    },
+    "bottlesort": {
+      "pushed_at": "2026-10-04T12:36:55Z",
+      "commits": 21
+    },
+    "qingyan-pinzuo": {
+      "pushed_at": "2026-09-22T21:28:20Z",
+      "commits": 2
+    },
+    "BetOptima": {
+      "pushed_at": "2026-08-23T18:37:33Z",
+      "commits": 29
+    },
+    "go-ai-academy": {
+      "pushed_at": "2026-07-28T14:18:10Z",
+      "commits": 57
+    },
+    "devlog": {
+      "pushed_at": "2026-05-16T23:08:54Z",
+      "commits": 14
+    }
+  }
+}

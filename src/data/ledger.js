@@ -1,8 +1,6 @@
 /**
- * 收支账本
+ * 收支账本（本文件由 scripts/daily_sync.py 根据 devlog-private/revenue/progress.md 自动生成，勿手改）
  * 投入和收入分开记 —— 不合并，不互相抵消。
- * 本文件由 scripts/daily_sync.py 根据 devlog-private/revenue/progress.md 每天自动重新生成，
- * 手改会被覆盖；要改数据请改那个 md（源文件），或改完 md 后手动跑一次脚本。
  *
  * 关于「跑车收入」：这是每天生活的底，不是项目的收入，所以单独记在这里做背景。
  * 最近两个月一天平均 30 块左右；5 月份行情好时一天能跑 100~150 块。
@@ -16,11 +14,11 @@ export const runIncome = [
 ];
 
 export const costs = [
-  { date: "2026-05-11", item: "useaitools.me 主站域名", amount: 135, note: "项目的起点" },
-  { date: "2026-05-15", item: "tryouraitools.com", amount: 85, note: "主推 .com" },
-  { date: "2026-05-15", item: "cafeaitools.com", amount: 85, note: "标注「未来项目」" },
-  { date: "2026-05-15", item: "useaitools.net", amount: 95, note: "品牌防守" },
-  { date: "2026-05-15", item: "useaitools.cn", amount: 38, note: "国内防守" },
+  { date: "2026-05-11", item: "`useaitools.me`", amount: 135.0, note: "主站域名" },
+  { date: "2026-05-15", item: "`tryouraitools.com`", amount: 85.0, note: "主推 .com" },
+  { date: "2026-05-15", item: "`cafeaitools.com`", amount: 85.0, note: "未来项目" },
+  { date: "2026-05-15", item: "`useaitools.net`", amount: 95.0, note: "品牌防守" },
+  { date: "2026-05-15", item: "`useaitools.cn`", amount: 38.0, note: "国内防守" },
 ];
 
 export const income = [
@@ -30,10 +28,11 @@ export const income = [
 ];
 
 export const affiliate = [
+  { platform: "平台", tool: "工具", commission: "佣金", date: "申请日期", status: "pending", note: "状态" },
   { platform: "Rytr 官网", tool: "Rytr", commission: "30% / 12个月", date: "2026-05-15", status: "approved", note: "第一个拿下的联盟链接" },
-  { platform: "Impact", tool: "AppSumo", commission: "100% 新用户", date: "2026-05-13", status: "rejected", note: "被拒：新网站缺乏流量" },
+  { platform: "Impact", tool: "AppSumo", commission: "100%新用户", date: "2026-05-13", status: "rejected", note: "被拒：新网站缺乏流量" },
   { platform: "PartnerStack", tool: "ElevenLabs", commission: "22% / 12个月", date: "2026-05-13", status: "rejected", note: "被拒：网吧 IP 风控误判" },
-  { platform: "PartnerStack", tool: "Descript", commission: "$25 / 次", date: "2026-05-13", status: "rejected", note: "同上" },
+  { platform: "PartnerStack", tool: "Descript", commission: "$25/次", date: "2026-05-13", status: "rejected", note: "同上" },
   { platform: "邮件申请", tool: "Jasper", commission: "待确认", date: "2026-05-15", status: "pending", note: "无下文" },
   { platform: "邮件申请", tool: "Copy.ai", commission: "待确认", date: "2026-05-15", status: "pending", note: "无下文" },
 ];
