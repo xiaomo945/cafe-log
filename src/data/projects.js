@@ -1,5 +1,5 @@
 /**
- * 17 个项目（产品仓，不含 cafe-log / mind-vault 两个记录型仓库）
+ * 20 个项目（产品仓，不含 cafe-log / mind-vault 两个记录型仓库）
  * 数据来源：GitHub API（创建时间 / 最后推送时间 / 语言 / 可见性 / 作者提交数）
  * 每个项目的 note 都来自真实提交记录——到底做了什么，而不是只写一句话。
  * intro 是写给访客看的介绍（玩法 / 亮点 / 现状），让博客能给项目导流。
@@ -71,7 +71,7 @@ export const projects = [
     commits: 4,
     intro:
       "实时检测本机档位、超限自动回落，GUI 和命令行双入口，零第三方依赖。这是我唯一做完整、又天天在用的东西——bug 全是自己用出来的，所以质量反而最高。",
-    note: "★ 17 个项目里唯一真正「完整」的。零第三方依赖，GUI + CLI 双入口，实时检测本机档位、超限自动回落。因为是自己天天要用，bug 全被自己撞出来了。",
+    note: "★ 20 个项目里唯一真正「完整」的。零第三方依赖，GUI + CLI 双入口，实时检测本机档位、超限自动回落。因为是自己天天要用，bug 全被自己撞出来了。",
   },
   {
     name: "devlog",
@@ -269,6 +269,55 @@ export const projects = [
     commits: 9,
     intro: "记录每天的投入、收入与想法，不对外公开。",
     note: "里面有 revenue/progress.md —— 停在 2026-05-16，累计收入 ¥0。",
+  },
+
+  // ── 网页 / H5 独立版（从原生仓库「分家」出来，单独部署）──
+  {
+    name: "bottlesort-web",
+    kind: "game",
+    desc: "倒瓶子（魔法药水分拣）网页 / H5 独立版，与微信 / 抖音原生仓库完全分离。",
+    lang: "JavaScript",
+    visibility: "private",
+    created: "2026-10-15",
+    pushed: "2026-10-20",
+    days: 6,
+    status: "live",
+    commits: 16,
+    url: "https://shouyou.me/bottlesort/",
+    intro:
+      "倒瓶子的网页 / H5 独立版。引擎 core.js 一个字节没改，只在外面套了层网页广告适配层——海外服务器接不了国内广告，所以按 Unity / AdSense 那套海外接口预留好，加载失败就降级放行，绝不挡着你玩。已部署到 shouyou.me，纯网页就能玩。",
+    note: "★ 从 bottlesort 原生仓库「分家」出来的独立网页仓库：core.js 引擎同源、只单向同步，广告和外壳的改造只在本仓库做，微信 / 抖音端彻底冻结不动。加了 web-ads.js 海外广告适配层（防御式 onAd，失败自动放行），Vercel 单独部署后用合集站反代接进 shouyou.me/bottlesort/，旧副本已删除。",
+  },
+  {
+    name: "puzzle-web",
+    kind: "game",
+    desc: "拼图（PuzzleCraft）网页 / H5 独立版，与微信 / 原生仓库完全分离。",
+    lang: "TypeScript",
+    visibility: "private",
+    created: "2026-10-15",
+    pushed: "2026-10-21",
+    days: 6,
+    status: "live",
+    commits: 13,
+    url: "https://shouyou.me/puzzle/",
+    intro:
+      "拼图的网页 / H5 独立版。用补齐后的完整真实代码重新构建上线，上传自己的照片就能在线拼——纯浏览器处理，不上传服务器。已部署到 shouyou.me，纯网页就能玩。",
+    note: "★ 从 puzzle-custom-game 微信 / 原生仓库「分家」出来的独立网页仓库：client 是网页游戏，广告 / 外壳改造只在本仓库做，与微信 / 原生仓库完全分离。用 Vite 以相对路径重新构建，Vercel 单独部署后用合集站反代接进 shouyou.me/puzzle/，旧副本已删除；上传照片 → 选难度 → 进棋盘整条链路实测可玩。",
+  },
+  {
+    name: "xiaomo-games-backend",
+    kind: "tool",
+    desc: "个人游戏开发者全渠道变现与统一数据中台。",
+    lang: "—",
+    visibility: "private",
+    created: "2026-10-19",
+    pushed: "2026-10-19",
+    days: 2,
+    status: "building",
+    commits: 2,
+    intro:
+      "个人游戏开发者的全渠道变现与统一数据中台：网页（AdSense）+ 微信小游戏（流量主）+ Steam（Godot）一套代码、双广告后端，统一看板看所有项目的用户数、付费转化、付费金额、游玩时长。",
+    note: "刚开坑（2 次提交）。目标是一套后端同时接网页 AdSense、微信流量主、Steam 三套变现，再汇到统一看板。想法清晰，还没长出肉。",
   },
 ];
 
