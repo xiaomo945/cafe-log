@@ -1,0 +1,181 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { projects } from "../../data/projects.js";
+
+export function getStaticPaths() {
+  return projects.map((p) => ({
+    params: { name: p.name },
+    props: { project: p },
+  }));
+}
+
+const { project: p } = Astro.props;
+
+const SITE = "https://cafeaitools.com";
+
+const statusMeta = {
+  live: { text: "已上线", cls: "live" },
+  building: { text: "进行中", cls: "done" },
+  stopped: { text: "已停", cls: "stop" },
+  dead: { text: "建议放弃", cls: "stop" },
+};
+
+const kindMeta = {
+  web: "网页",
+  game: "游戏",
+  tool: "工具",
+  app: "应用",
+  note: "记录",
+};
+
+const s = statusMeta[p.status];
+const kindText = kindMeta[p.kind];
+const github = `https://github.com/xiaomo945/${p.name}`;
+
+// 只给「确实能打开」的链接，避免死链（私有仓库的 GitHub 地址对访客是 404）
+const canLinkGithub = p.visibility === "public";
+
+// 同类型的其他项目，做内链
+const related = projects
+  .filter((x) => x.name !== p.name && x.kind === p.kind)
+  .slice(0, 5);
+const fallbackRelated = projects
+  .filter((x) => x.name !== p.name && x.kind !== p.kind)
+  .slice(0, 5 - related.length);
+
+const pageTitle = `${p.name}：${p.desc}`;
+const pageDesc = `${p.desc}${p.intro ? " " + p.intro : ""}`.slice(0, 150);
+
+// 结构化数据：面包屑 + 软件/游戏
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "起点", item: `${SITE}/` },
+    { "@type": "ListItem", position: 2, name: "项目", item: `${SITE}/projects/` },
+    { "@type": "ListItem", position: 3, name: p.name, item: `${SITE}/projects/${p.name}/` },
+  ],
+};
+
+const isGame = p.kind === "game";
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": isGame ? "VideoGame" : "SoftwareApplication",
+  name: p.name,
+  description: p.intro || p.desc,
+  applicationCategory: isGame ? "Game" : "DeveloperApplication",
+  operatingSystem: "Web",
+  url: p.url || `${SITE}/projects/${p.name}/`,
+  author: { "@id": `${SITE}/#person` },
+  ...(p.lang ? { programmingLanguage: p.lang } : {}),
+  ...(isGame ? { genre: kindText, playMode: "SinglePlayer" } : {}),
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} active="projects">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumb)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(appSchema)} />
+
+  <p style="font-size: 0.85rem; color: var(--text-faint); margin-bottom: 10px;">
+    <a href="/projects">项目</a> / <strong>{p.name}</strong>
+  </p>
+
+  <h1 style="margin-bottom: 10px;">{p.name}</h1>
+
+  <div style="margin-bottom: 14px;">
+    <span class={`tag ${s.cls}`}>{s.text}</span>
+    <span class="tag">{kindText}</span>
+    <span class="tag">{p.visibility === "public" ? "公开" : "私有"}</span>
+    <span class="tag">{p.lang}</span>
+  </div>
+
+  <p style="font-size: 1.05rem; font-weight: 600; margin: 0 0 14px;">{p.desc}</p>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="num">{p.days > 0 ? p.days : "<1"}</span>
+      <span class="label">存活天数</span>
+    </div>
+    <div class="stat blue">
+      <span class="num">{p.commits}</span>
+      <span class="label">次提交</span>
+    </div>
+    <div class="stat amber">
+      <span class="num">{kindText}</span>
+      <span class="label">类型</span>
+    </div>
+  </div>
+
+  <h2>这个项目是什么</h2>
+  <p>{p.intro}</p>
+
+  <h2>真实记录</h2>
+  <p style="color: var(--text-dim); font-size: 0.95rem;">{p.note}</p>
+
+  <h2>时间</h2>
+  <p style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--text-dim);">
+    创建 {p.created} → 最后推送 {p.pushed}
+  </p>
+
+  <div style="margin: 26px 0; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+    {
+      p.url && (
+        <a class="card-link" href={p.url} target="_blank" rel="noopener">
+          {isGame ? "▶ 玩一玩" : "↗ 打开网站"}
+        </a>
+      )
+    }
+    {
+      canLinkGithub && (
+        <a class="card-link ghost" href={github} target="_blank" rel="noopener">
+          ↗ 看源码
+        </a>
+      )
+    }
+    {
+      !p.url && !canLinkGithub && (
+        <span style="font-size: 0.88rem; color: var(--text-faint);">
+          私有仓库，源码未公开
+        </span>
+      )
+    }
+  </div>
+
+  {
+    related.length > 0 && (
+      <>
+        <h2>同类项目</h2>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          {related.map((r) => (
+            <a class="card-link ghost" href={`/projects/${r.name}/`}>
+              {r.name}
+            </a>
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  {
+    fallbackRelated.length > 0 && (
+      <>
+        <h2>其他项目</h2>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          {fallbackRelated.map((r) => (
+            <a class="card-link ghost" href={`/projects/${r.name}/`}>
+              {r.name}
+            </a>
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  <hr />
+
+  <p>
+    <a href="/projects">← 返回全部 20 个项目</a>
+    {" · "}
+    <a href="/">回到起点</a>
+  </p>
+</BaseLayout>
