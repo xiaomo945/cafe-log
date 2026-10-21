@@ -1,7 +1,8 @@
 /**
  * 收支账本
  * 投入和收入分开记 —— 不合并，不互相抵消。
- * 原始数据来源：devlog-private/revenue/progress.md
+ * 本文件由 scripts/daily_sync.py 根据 devlog-private/revenue/progress.md 每天自动重新生成，
+ * 手改会被覆盖；要改数据请改那个 md（源文件），或改完 md 后手动跑一次脚本。
  *
  * 关于「跑车收入」：这是每天生活的底，不是项目的收入，所以单独记在这里做背景。
  * 最近两个月一天平均 30 块左右；5 月份行情好时一天能跑 100~150 块。

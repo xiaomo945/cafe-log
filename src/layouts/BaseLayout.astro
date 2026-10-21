@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import VideoEmbed from "../components/VideoEmbed.astro";
 import ImageFigure from "../components/ImageFigure.astro";
+import { stats } from "../data/stats.js";
 
 interface Props {
   title: string;
@@ -11,7 +12,7 @@ interface Props {
 
 const {
   title,
-  description = "保定出租车司机，一天 30 块，用 AI 做产品与游戏的真实记录。163 天，21 个项目，1400+ 次提交。",
+  description = `保定出租车司机，一天 30 块，用 AI 做产品与游戏的真实记录。${stats.days} 天，${stats.projects} 个项目，${stats.commitBucket} 次提交。`,
   active = "",
 } = Astro.props;
 
@@ -33,7 +34,7 @@ const siteSchema = {
       url: SITE,
       name: "cafeaitools.com",
       description:
-        "保定出租车司机，一天 30 块，用 AI 做产品与游戏的真实记录：163 天、21 个项目、投入 ¥438、收入 ¥0。",
+        `保定出租车司机，一天 30 块，用 AI 做产品与游戏的真实记录：${stats.days} 天、${stats.projects} 个项目、投入 ¥${stats.cost}、收入 ¥${stats.income}。`,
       inLanguage: "zh-CN",
       publisher: { "@id": `${SITE}/#person` },
     },
@@ -136,7 +137,7 @@ const nav = [
           cafeaitools.com — 记录从 2026-05-11 保定一家网吧开始的那条路。
         </p>
         <p>
-          至今 163 天 · 21 个项目 · 投入 ¥438 · 收入 ¥0。
+          至今 {stats.days} 天 · {stats.projects} 个项目 · 投入 ¥{stats.cost} · 收入 ¥{stats.income}。
           <br />
           如果哪天这个站有意义了，那是因为它记下了还没成功时的样子。
         </p>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { timeline } from "../data/timeline.js";
+import { stats } from "../data/stats.js";
 ---
 
 <BaseLayout title="时间线" description="从 2026-05-11 保定一家网吧开始，到今天的完整记录" active="timeline">
@@ -38,6 +39,6 @@ import { timeline } from "../data/timeline.js";
 
   <p style="color: var(--text-faint); font-size: 0.88rem;">
     这些记录来自 devlog 仓库的 9 篇原始日志、devlog-private 的收支表，
-    以及 24 个仓库的 git 时间戳。没有修饰，只有事实。
+    以及 {stats.repos} 个仓库的 git 时间戳。没有修饰，只有事实。
   </p>
 </BaseLayout>

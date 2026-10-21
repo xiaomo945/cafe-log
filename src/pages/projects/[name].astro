@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projects } from "../../data/projects.js";
+import { stats } from "../../data/stats.js";
 
 export function getStaticPaths() {
   return projects.map((p) => ({
@@ -181,7 +182,7 @@ const appSchema = {
   <hr />
 
   <p>
-    <a href="/projects">← 返回全部 21 个项目</a>
+    <a href="/projects">← 返回全部 {stats.projects} 个项目</a>
     {" · "}
     <a href="/">回到起点</a>
   </p>

@@ -22,7 +22,7 @@ const daysIdle = Math.max(
 );
 ---
 
-<BaseLayout title="收支" description="投入 ¥438，收入 ¥0。两个数字分开记，不合并。" active="ledger">
+<BaseLayout title="收支" description={`投入 ¥${totalCost}，收入 ¥${totalIncome}。两个数字分开记，不合并。`} active="ledger">
   <h1>收支</h1>
   <p style="color: var(--text-dim);">
     投入和收入分开记。不合并，不抵消 —— 每个数字都该被单独看见。
@@ -51,7 +51,7 @@ const daysIdle = Math.max(
     <p style="margin: 0; color: #f5e6c8;">
       <strong style="color: var(--amber);">这笔钱换算成跑车天数</strong><br />
       我是保定出租车司机，日均收入约 ¥30。
-      ¥438 的投入，等于我 <strong>14.6 天</strong> 一分不剩的全部收入。<br />
+      ¥{totalCost} 的投入，等于我 <strong>{(totalCost / 30).toFixed(1)} 天</strong>一分不剩的全部收入。<br />
       <span style="font-size: 0.9rem;">
         这还只是域名钱。网吧上网费按小时算，没记在这一栏里。
       </span>

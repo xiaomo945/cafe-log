@@ -3,9 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { timeline } from "../data/timeline.js";
 import { totalCost, totalIncome } from "../data/ledger.js";
 import { projects, totalCommits } from "../data/projects.js";
+import { stats } from "../data/stats.js";
 
 const start = new Date("2026-05-11");
-const now = new Date("2026-10-21");
+const now = new Date(stats.asOf); // 数据日期由 daily_sync.py 每天写入，不再硬编码
 const days = Math.floor((now - start) / 86400000);
 
 // 首页只放关键节点
@@ -45,15 +46,15 @@ const featured = ["useaitools-me", "veggie-arena", "bottlesort-web", "puzzle-web
 
   <div class="card" style="border-color: rgba(240,180,41,0.25); background: var(--amber-glow);">
     <p style="margin: 0; color: #f5e6c8;">
-      <strong style="color: var(--amber);">¥438 是什么概念</strong><br />
-      按一天挣 30 块算，这笔买域名的钱，是我 <strong>14.6 天</strong>的全部收入。
+      <strong style="color: var(--amber);">¥{stats.cost} 是什么概念</strong><br />
+      按一天挣 30 块算，这笔买域名的钱，是我 <strong>{(stats.cost / 30).toFixed(1)} 天</strong>的全部收入。
       一分不剩，全投进去了。
     </p>
   </div>
 
   <p style="margin-top: 22px; padding: 14px 18px; border-left: 3px solid var(--amber); background: var(--amber-glow); border-radius: 0 var(--radius) var(--radius) 0; color: #f5e6c8;">
     <strong style="color: var(--amber);">这几个月我没闲着。</strong>
-    24 个仓库、{totalCommits} 次提交，从 AI 工具站做到 Godot 游戏、倒瓶子小游戏、直播助手、刷新率工具。
+    {stats.repos} 个仓库、{totalCommits} 次提交，从 AI 工具站做到 Godot 游戏、倒瓶子小游戏、直播助手、刷新率工具。
     以前网站没把这些写出来，现在补上了——在 <a href="/projects">项目</a> 和 <a href="/timeline">时间线</a> 里，能看到每一份努力。
   </p>
 
@@ -64,7 +65,7 @@ const featured = ["useaitools-me", "veggie-arena", "bottlesort-web", "puzzle-web
   </p>
 
   <p style="color: var(--text-dim);">
-    到今天 {days} 天，做了 {projects.length} 个项目，收入 ¥0。
+    到今天 {days} 天，做了 {projects.length} 个项目，收入 ¥{stats.income}。
     数字不好看。但把它们放在这里，是因为它们是真的。
   </p>
 
@@ -147,7 +148,7 @@ const featured = ["useaitools-me", "veggie-arena", "bottlesort-web", "puzzle-web
   </div>
 
   <p style="margin-top: 22px;">
-    <a href="/projects">看全部 21 个项目 →</a>
+    <a href="/projects">看全部 {stats.projects} 个项目 →</a>
   </p>
 
   <h2>关键节点</h2>

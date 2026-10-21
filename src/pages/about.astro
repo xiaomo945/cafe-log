@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { stats } from "../data/stats.js";
 
 // FAQ 结构化数据：让搜索引擎能把这些问答展示成富摘要
 const faqSchema = {
@@ -11,7 +12,7 @@ const faqSchema = {
       name: "用 AI 做产品，真的能赚到钱吗？",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "到现在为止：投入 ¥438（5 个域名的钱），收入 ¥0。这不是励志故事，是目前最真实的状态。所有收支都公开记在收支页里，第一笔钱进来那天会写清楚它从哪来。",
+        text: `到现在为止：投入 ¥${stats.cost}（5 个域名的钱），收入 ¥${stats.income}。这不是励志故事，是目前最真实的状态。所有收支都公开记在收支页里，第一笔钱进来那天会写清楚它从哪来。`,
       },
     },
     {
@@ -27,7 +28,7 @@ const faqSchema = {
       name: "一共做了多少个项目？都成功了吗？",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "163 天做了 21 个项目，目前 7 个在线可访问。近一半项目存活不到 3 天——那是在找方向，不是在做产品。每个项目的去处都写在项目页里。",
+        text: `${stats.days} 天做了 ${stats.projects} 个项目，目前 ${stats.online} 个在线可访问。近一半项目存活不到 3 天——那是在找方向，不是在做产品。每个项目的去处都写在项目页里。`,
       },
     },
     {
@@ -43,7 +44,7 @@ const faqSchema = {
       name: "普通人现在开始学 AI 还来得及吗？",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "我不是能回答这个问题的人，我自己还在半路上。能给出的只有事实：一个一天挣 30 块的出租车司机，163 天攒出了 21 个项目和一个全程公开的记录站。每天拱一点，163 天就是这个样子。",
+        text: `我不是能回答这个问题的人，我自己还在半路上。能给出的只有事实：一个一天挣 30 块的出租车司机，${stats.days} 天攒出了 ${stats.projects} 个项目和一个全程公开的记录站。每天拱一点，${stats.days} 天就是这个样子。`,
       },
     },
   ],
@@ -85,12 +86,12 @@ const faqSchema = {
   <h2>钱的事</h2>
 
   <p>
-    2026 年 5 月 15 日，我买了 5 个域名，一共 <strong>¥438</strong>。
+    2026 年 5 月 15 日，我买了 5 个域名，一共 <strong>¥{stats.cost}</strong>。
     按一天 30 块算，这是<strong>半个月的收入</strong>。
   </p>
 
   <p>
-    到现在，这些域名带来的收入是 <strong>¥0</strong>。
+    到现在，这些域名带来的收入是 <strong>¥{stats.income}</strong>。
   </p>
 
   <p style="color: var(--text-dim); font-size: 0.95rem;">
@@ -165,7 +166,7 @@ const faqSchema = {
   <div class="card">
     <p style="margin-top: 0;"><strong>用 AI 做产品，真的能赚到钱吗？</strong></p>
     <p style="margin: 0; color: var(--text-dim);">
-      到现在为止：投入 ¥438（5 个域名的钱），收入 ¥0。
+      到现在为止：投入 ¥{stats.cost}（5 个域名的钱），收入 ¥{stats.income}。
       这不是励志故事，是目前最真实的状态。
       所有收支都公开记在<a href="/ledger">收支页</a>里，第一笔钱进来那天我会写清楚它从哪来。
     </p>
@@ -182,7 +183,7 @@ const faqSchema = {
   <div class="card">
     <p style="margin-top: 0;"><strong>一共做了多少个项目？都成功了吗？</strong></p>
     <p style="margin: 0; color: var(--text-dim);">
-      163 天做了 21 个项目，目前 7 个在线可访问。
+      {stats.days} 天做了 {stats.projects} 个项目，目前 {stats.online} 个在线可访问。
       近一半项目存活不到 3 天——那是在找方向，不是在做产品。
       每个项目的去处都写在<a href="/projects">项目页</a>里。
     </p>
@@ -200,8 +201,8 @@ const faqSchema = {
     <p style="margin-top: 0;"><strong>普通人现在开始学 AI 还来得及吗？</strong></p>
     <p style="margin: 0; color: var(--text-dim);">
       我不是能回答这个问题的人——我自己还在半路上。
-      能给出的只有事实：一个一天挣 30 块的出租车司机，163 天攒出了
-      21 个项目和一个全程公开的记录站。每天拱一点，163 天就是这个样子。
+      能给出的只有事实：一个一天挣 30 块的出租车司机，{stats.days} 天攒出了
+      {stats.projects} 个项目和一个全程公开的记录站。每天拱一点，{stats.days} 天就是这个样子。
     </p>
   </div>
 </BaseLayout>
