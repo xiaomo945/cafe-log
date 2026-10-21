@@ -40,6 +40,7 @@ LEDGER_SRC = f"{OWNER}/devlog-private"    # 收益数据源仓库
 STATE_PATH = "scripts/sync-state.json"
 DIARY_SLUG = "daily-log"                  # 日记文件名：YYYY-MM-DD-daily-log.mdx
 SKIP_DIRS = ("node_modules/", "dist/", ".astro", ".wrangler", ".vercel")
+EXCLUDE_REPOS = {"cafe-log"}              # 博客自身是「记录工具」，不算做出来的项目，不进花名册
 
 _HAS_GH = shutil.which("gh") is not None
 
@@ -208,6 +209,8 @@ def sync_projects(workdir, repos, state, today):
         if r.get("fork"):
             continue
         name = r["name"]
+        if name in EXCLUDE_REPOS:
+            continue
         full = f"{OWNER}/{name}"
         vis = "private" if r.get("private") else "public"
         branch = r.get("default_branch", "main")
@@ -277,6 +280,9 @@ def sync_projects(workdir, repos, state, today):
                 log(f"  ↻ {name} 重数提交：{c}")
             except Exception as e:
                 log(f"  ⚠️ {name} 提交重数失败，保留旧值：{e}")
+
+    # 博客自身不算「项目」：万一历史上被录进去过，这里清掉
+    projects = [p for p in projects if p["name"] not in EXCLUDE_REPOS]
 
     data["projects"] = projects
     with open(pj_path, "w", encoding="utf-8") as f:
@@ -354,7 +360,8 @@ def sync_ledger(workdir):
 
     aff = []
     for c in aff_rows:
-        if len(c) < 5:
+        # 表头行（平台/工具/佣金/申请日期/…）没有日期，挡掉
+        if len(c) < 5 or not re.match(r"\d{4}-\d{2}-\d{2}", c[3]):
             continue
         status = "pending"
         if "✅" in c[4] or "已获批" in c[4]:
@@ -433,6 +440,8 @@ def ledger_totals(workdir):
     """从当前 ledger.js 源码取 totalCost / totalIncome。"""
     with open(os.path.join(workdir, "src/data/ledger.js"), encoding="utf-8") as f:
         src = f.read()
+    # 去掉注释行——占位示例里也有 amount: 12.5，不能算进收入
+    src = re.sub(r"^\s*//.*$", "", src, flags=re.M)
 
     def amounts(arr):
         m = re.search(rf"export const {arr} = \[(.*?)\];", src, re.S)
@@ -494,7 +503,15 @@ def fetch_repo_commits(full, since_iso):
             first = ((c.get("commit") or {}).get("message", "") or "").splitlines()
             first = first[0].strip() if first else ""
             if first:
-                out.append(first[:70])
+                if len(first) > 70:
+                    cut = first[:67]
+                    for sep in ("，", "、", ";", " ", ",", "(", "（"):
+                        idx = cut.rfind(sep)
+                        if idx >= 40:
+                            cut = cut[:idx]
+                            break
+                    first = cut + "…"
+                out.append(first)
     return out
 
 
