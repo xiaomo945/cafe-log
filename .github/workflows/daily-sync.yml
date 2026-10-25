@@ -1,0 +1,32 @@
+name: Daily Sync
+
+on:
+  schedule:
+    - cron: '0 10 * * *'  # 每天 18:00（Asia/Shanghai = UTC+8）
+  workflow_dispatch:      # 允许手动触发补跑
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 凭据来自仓库 secret（加密存储，日志自动打码），不落任何明文。
+      # 脚本需要读私有仓库 devlog-private/revenue/progress.md 重生账本，
+      # 因此用 PAT 而非内置 GITHUB_TOKEN。
+      - name: Run daily sync
+        env:
+          GH_TOKEN: ${{ secrets.DAILY_SYNC_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DAILY_SYNC_TOKEN }}
+        run: python3 scripts/daily_sync.py
