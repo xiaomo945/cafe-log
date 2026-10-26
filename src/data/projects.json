@@ -8,10 +8,10 @@
       "lang": "TypeScript",
       "visibility": "public",
       "created": "2026-05-11",
-      "pushed": "2026-10-25",
-      "days": 167,
+      "pushed": "2026-10-26",
+      "days": 168,
       "status": "live",
-      "commits": 869,
+      "commits": 876,
       "url": "https://useaitools.me",
       "zip": "https://github.com/xiaomo945/useaitools-me/archive/refs/heads/main.zip",
       "intro": "把市面上真正好用的 AI 工具按用途分好类、写好中文点评，帮人少走弯路、不交智商税。内容审计、7 语种、SEO 全链路、GA4 全做了。5 个月里唯一没断过的项目，已用我的域名 useaitools.me 正式上线。",
@@ -39,10 +39,10 @@
       "lang": "TypeScript",
       "visibility": "public",
       "created": "2026-05-23",
-      "pushed": "2026-10-15",
-      "days": 145,
+      "pushed": "2026-10-25",
+      "days": 155,
       "status": "stopped",
-      "commits": 88,
+      "commits": 90,
       "zip": "https://github.com/xiaomo945/try-ai-writer/archive/refs/heads/main.zip",
       "intro": "品牌声音克隆、文档解析、积分订阅、Creem 支付闭环都做了，Google 也自动收录过。但核心数据走浏览器 localStorage，没有真正的服务端，算能跑的原型，已停更。",
       "note": "82 次提交。Google 自动收录、品牌声音克隆、文档解析、积分订阅、联盟分销、Creem 支付闭环。核心数据存 localStorage，无服务端持久化——能跑，但不算真产品。"
@@ -114,10 +114,10 @@
       "lang": "JavaScript",
       "visibility": "private",
       "created": "2026-06-02",
-      "pushed": "2026-10-23",
-      "days": 143,
+      "pushed": "2026-10-25",
+      "days": 145,
       "status": "live",
-      "commits": 304,
+      "commits": 311,
       "url": "https://mbti.中国",
       "intro": "102 道题、付费解锁人格报告、海报分享、微信打赏，还做了全站多语言和 NPS 反馈闭环，是我打磨最细的一个。",
       "note": "140 次提交。102 题 + 付费解锁 + 人格报告 + 海报分享 + 微信打赏；全站 i18n、NPS 反馈闭环、爽感增强系统（超级连击 / 随机彩蛋 / 解压模式 / 音效升级）、a11y 焦点管理。打磨最细的一个。"
@@ -321,6 +321,21 @@
       "url": null,
       "intro": "个人思维保险库：想法 / 方向 / 创意 / 未完成的事 / 关于我自己的全部记录",
       "note": "自动录入于 2026-10-21（GitHub 新仓库检测）。定性内容待手写润色。"
+    },
+    {
+      "name": "okx-bot",
+      "kind": "tool",
+      "desc": "（待补充介绍）",
+      "lang": "Python",
+      "visibility": "private",
+      "created": "2026-10-25",
+      "pushed": "2026-10-25",
+      "days": 0,
+      "status": "building",
+      "commits": 1,
+      "url": null,
+      "intro": "新仓库，介绍待补充。",
+      "note": "自动录入于 2026-10-27（GitHub 新仓库检测）。定性内容待手写润色。"
     }
   ]
 }
