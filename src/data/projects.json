@@ -8,10 +8,10 @@
       "lang": "TypeScript",
       "visibility": "public",
       "created": "2026-05-11",
-      "pushed": "2026-10-27",
-      "days": 169,
+      "pushed": "2026-10-28",
+      "days": 170,
       "status": "live",
-      "commits": 877,
+      "commits": 881,
       "url": "https://useaitools.me",
       "zip": "https://github.com/xiaomo945/useaitools-me/archive/refs/heads/main.zip",
       "intro": "把市面上真正好用的 AI 工具按用途分好类、写好中文点评，帮人少走弯路、不交智商税。内容审计、7 语种、SEO 全链路、GA4 全做了。5 个月里唯一没断过的项目，已用我的域名 useaitools.me 正式上线。",
@@ -351,6 +351,36 @@
       "url": null,
       "intro": "蓝湾度假模拟器 · 独立游戏版（Godot 4）。由微信小游戏 dock-puzzle 衍生的海滨度假经营模拟器。",
       "note": "自动录入于 2026-10-27（GitHub 新仓库检测）。定性内容待手写润色。"
+    },
+    {
+      "name": "airi-oneclick",
+      "kind": "tool",
+      "desc": "airi 桌面 AI 伴侣一键安装包：图形安装向导 + 本地免费语音/对话服务，无需登录、全程离线",
+      "lang": "C#",
+      "visibility": "private",
+      "created": "2026-10-27",
+      "pushed": "2026-10-27",
+      "days": 0,
+      "status": "building",
+      "commits": 5,
+      "url": null,
+      "intro": "airi 桌面 AI 伴侣一键安装包：图形安装向导 + 本地免费语音/对话服务，无需登录、全程离线",
+      "note": "自动录入于 2026-10-29（GitHub 新仓库检测）。定性内容待手写润色。"
+    },
+    {
+      "name": "deepseek-harness-ollama-installer",
+      "kind": "web",
+      "desc": "DeepSeek Harness 桌面版 + Ollama 本地模型 一键安装包（Windows）。静默安装 Ollama 与 Harness、拉起本地模型服务、可选导入无审查 GGUF；全部使用官方直链。详见 README。",
+      "lang": "PowerShell",
+      "visibility": "private",
+      "created": "2026-10-27",
+      "pushed": "2026-10-27",
+      "days": 0,
+      "status": "building",
+      "commits": 2,
+      "url": null,
+      "intro": "DeepSeek Harness 桌面版 + Ollama 本地模型 一键安装包（Windows）。静默安装 Ollama 与 Harness、拉起本地模型服务、可选导入无审查 GGUF；全部使用官方直链。详见 README。",
+      "note": "自动录入于 2026-10-29（GitHub 新仓库检测）。定性内容待手写润色。"
     }
   ]
 }
