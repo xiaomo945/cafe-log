@@ -1,17 +1,25 @@
 {
-  "last_run": "2026-10-30T00:43:34.676285+08:00",
+  "last_run": "2026-10-31T00:35:37.025491+08:00",
   "repos": {
-    "cafe-log": {
-      "pushed_at": "2026-10-28T16:29:56Z",
-      "commits": null
+    "airi-oneclick": {
+      "pushed_at": "2026-10-30T09:51:59Z",
+      "commits": 9
     },
     "useaitools-me": {
-      "pushed_at": "2026-10-28T15:17:48Z",
-      "commits": 881
+      "pushed_at": "2026-10-30T06:11:52Z",
+      "commits": 891
     },
-    "airi-oneclick": {
-      "pushed_at": "2026-10-27T22:08:53Z",
-      "commits": 5
+    "try-ai-writer": {
+      "pushed_at": "2026-10-29T20:30:30Z",
+      "commits": 93
+    },
+    "mbti-china": {
+      "pushed_at": "2026-10-29T20:29:13Z",
+      "commits": 312
+    },
+    "cafe-log": {
+      "pushed_at": "2026-10-29T16:43:38Z",
+      "commits": null
     },
     "deepseek-harness-ollama-installer": {
       "pushed_at": "2026-10-27T21:52:31Z",
@@ -32,14 +40,6 @@
     "okx-bot": {
       "pushed_at": "2026-10-25T17:45:50Z",
       "commits": 1
-    },
-    "try-ai-writer": {
-      "pushed_at": "2026-10-25T17:38:58Z",
-      "commits": 90
-    },
-    "mbti-china": {
-      "pushed_at": "2026-10-25T16:12:06Z",
-      "commits": 311
     },
     "veggie-arena": {
       "pushed_at": "2026-10-24T04:03:40Z",
