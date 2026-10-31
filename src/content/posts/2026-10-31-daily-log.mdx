@@ -1,7 +1,7 @@
 ---
 title: "流水账 · 2026-10-31"
 date: 2026-10-31
-summary: "5 个仓库动了，+17 次提交。useaitools-me +10。"
+summary: "4 个仓库动了，+5 次提交。airi-oneclick +2。"
 tags: ["流水账", "自动记录"]
 ---
 
@@ -10,38 +10,24 @@ tags: ["流水账", "自动记录"]
 
 ## 今天动了什么
 
-**airi-oneclick**（+4）
-- perf: 10GB显存适配——大模型上下文2048+KV量化、whisper int8_float16、口型batch 4…
-- fix(voice): 重复双击启动.bat 不再误报错误；已在运行则提示成功，残留卡死会话自愈重启
-- fix(voice): 降噪门槛默认改为关闭(-66dB)并迁移旧-50设置，修复'她听不见我说话'
-- release: 数字人一键安装包 v1.0 入库(中文界面+8音色) + airi TTS/安装修复同步
+**airi-oneclick**（+2）
+- 修复整页滚动条与对话框错位：avatar-sync 的 body>* 规则覆盖了 fixed 浮层定位…
+- 修复麦克风全零静音(禁用Chrome音频处理) + 设置弹窗小窗口去滚动条一屏显示
 
 **cafe-log**（+1）
-- chore(daily): 自动同步 2026-10-30（日记 +1 提交）
+- chore(daily): 自动同步 2026-10-31（8 项数据变动 · 日记 +17 提交）
 
 **mbti-china**（+1）
-- 修 /blog 锚文本 + 把 289 份外链素材做成发布工作台
+- 修键盘连按不跳题：键盘走独立的 120ms 跳题节奏
 
-**try-ai-writer**（+1）
-- feat: AI writing goes BYOK + bulk noindex 240 template posts
-
-**useaitools-me**（+10）
-- fix: 6,990 URLs that all rendered the same page
-- fix: stop shipping other articles inside every page
-- fix: stop paying crawl budget for pages that cannot rank
-- fix: stop the root layout from canonicalising every page to the…
-- perf: stop serializing a whole category into the client payload
-- perf: paginate category listings and link each card to its review page
-- perf: move blog pagination from query strings to path segments
-- fix: stop nesting an anchor inside a link in the category tool grid
-- content: add 26 Show HN AI tools and three roundup posts that link…
-- perf: stop the CDN from skipping cache on category hubs, sitemap…
+**useaitools-me**（+1）
+- fix: stop prefetching every card, and cover the two gaps…
 
 ## 数字
 
-- 统计窗口：10 月 30 日 00:43 → 10 月 31 日 00:35
-- 本次提交：17 次 · 5 个仓库
-- 累计提交：1885 次
+- 统计窗口：10 月 31 日 00:00 → 10 月 31 日 23:38
+- 本次提交：5 次 · 4 个仓库
+- 累计提交：1889 次
 - 项目：26 个（7 个在线可访问）
 - 坚持天数：第 173 天
 - 累计收入：¥0
