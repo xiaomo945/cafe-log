@@ -8,10 +8,10 @@
       "lang": "TypeScript",
       "visibility": "public",
       "created": "2026-05-11",
-      "pushed": "2026-10-31",
-      "days": 173,
+      "pushed": "2026-11-01",
+      "days": 174,
       "status": "live",
-      "commits": 892,
+      "commits": 893,
       "url": "https://useaitools.me",
       "zip": "https://github.com/xiaomo945/useaitools-me/archive/refs/heads/main.zip",
       "intro": "把市面上真正好用的 AI 工具按用途分好类、写好中文点评，帮人少走弯路、不交智商税。内容审计、7 语种、SEO 全链路、GA4 全做了。5 个月里唯一没断过的项目，已用我的域名 useaitools.me 正式上线。",
@@ -381,6 +381,21 @@
       "url": null,
       "intro": "DeepSeek Harness 桌面版 + Ollama 本地模型 一键安装包（Windows）。静默安装 Ollama 与 Harness、拉起本地模型服务、可选导入无审查 GGUF；全部使用官方直链。详见 README。",
       "note": "自动录入于 2026-10-29（GitHub 新仓库检测）。定性内容待手写润色。"
+    },
+    {
+      "name": "ai-game-studio-pipeline",
+      "kind": "game",
+      "desc": "AI 游戏工作室管线：自然语言→立项卡→素材→工程→审查→变体→日志（Harness 执行版）",
+      "lang": "Python",
+      "visibility": "private",
+      "created": "2026-11-01",
+      "pushed": "2026-11-01",
+      "days": 0,
+      "status": "building",
+      "commits": 2,
+      "url": null,
+      "intro": "AI 游戏工作室管线：自然语言→立项卡→素材→工程→审查→变体→日志（Harness 执行版）",
+      "note": "自动录入于 2026-11-02（GitHub 新仓库检测）。定性内容待手写润色。"
     }
   ]
 }
