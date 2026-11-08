@@ -412,6 +412,22 @@
       "intro": "Windows 电脑清理大师 - 零依赖 Python/Tkinter 图形清理工具：逐盘扫描、目录用途识别、软件缓存分级、只读保护、手动挑着删。附可直接运行的单文件 EXE",
       "note": "自动录入于 2026-11-07（GitHub 新仓库检测）。定性内容待手写润色。",
       "zip": "https://github.com/xiaomo945/pc-clean-master/archive/refs/heads/main.zip"
+    },
+    {
+      "name": "cleanmaster",
+      "kind": "tool",
+      "desc": "Windows 电脑清理大师 - 零依赖 Python/Tkinter 图形清理工具：逐盘扫描、目录用途识别、软件缓存分级、只读保护、手动挑着删。附可直接运行的单文件 EXE",
+      "lang": "Python",
+      "visibility": "public",
+      "created": "2026-11-06",
+      "pushed": "2026-11-08",
+      "days": 2,
+      "status": "building",
+      "commits": 3,
+      "url": "https://github.com/xiaomo945",
+      "intro": "Windows 电脑清理大师 - 零依赖 Python/Tkinter 图形清理工具：逐盘扫描、目录用途识别、软件缓存分级、只读保护、手动挑着删。附可直接运行的单文件 EXE",
+      "note": "自动录入于 2026-11-09（GitHub 新仓库检测）。定性内容待手写润色。",
+      "zip": "https://github.com/xiaomo945/cleanmaster/archive/refs/heads/main.zip"
     }
   ]
 }
