@@ -285,10 +285,10 @@
       "lang": "TypeScript",
       "visibility": "private",
       "created": "2026-10-15",
-      "pushed": "2026-11-13",
-      "days": 29,
+      "pushed": "2026-11-14",
+      "days": 30,
       "status": "live",
-      "commits": 42,
+      "commits": 48,
       "url": "https://shouyou.me/puzzle/",
       "intro": "拼图的网页 / H5 独立版。用补齐后的完整真实代码重新构建上线，上传自己的照片就能在线拼——纯浏览器处理，不上传服务器。已部署到 shouyou.me，纯网页就能玩。",
       "note": "★ 从 puzzle-custom-game 微信 / 原生仓库「分家」出来的独立网页仓库：client 是网页游戏，广告 / 外壳改造只在本仓库做，与微信 / 原生仓库完全分离。用 Vite 以相对路径重新构建，Vercel 单独部署后用合集站反代接进 shouyou.me/puzzle/，旧副本已删除；上传照片 → 选难度 → 进棋盘整条链路实测可玩。"
@@ -329,8 +329,8 @@
       "lang": "Python",
       "visibility": "private",
       "created": "2026-10-25",
-      "pushed": "2026-11-13",
-      "days": 19,
+      "pushed": "2026-11-14",
+      "days": 20,
       "status": "building",
       "commits": 1,
       "url": null,
@@ -444,6 +444,21 @@
       "intro": "MBTI 中文资料整理｜16 型人格详解、认知功能栈与测试索引",
       "note": "自动录入于 2026-11-11（GitHub 新仓库检测）。定性内容待手写润色。",
       "zip": "https://github.com/xiaomo945/awesome-mbti-cn/archive/refs/heads/main.zip"
+    },
+    {
+      "name": "neon-red-moon",
+      "kind": "web",
+      "desc": "Neon Red Moon: cyber-wasteland idle loot ARPG built with PixiJS",
+      "lang": "TypeScript",
+      "visibility": "private",
+      "created": "2026-11-14",
+      "pushed": "2026-11-14",
+      "days": 0,
+      "status": "building",
+      "commits": 4,
+      "url": null,
+      "intro": "Neon Red Moon: cyber-wasteland idle loot ARPG built with PixiJS",
+      "note": "自动录入于 2026-11-15（GitHub 新仓库检测）。定性内容待手写润色。"
     }
   ]
 }
