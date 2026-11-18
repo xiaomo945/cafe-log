@@ -4,11 +4,11 @@
  * 页面一律从这里读数字，不再硬编码——脚本换数，全站跟着变。
  */
 export const stats = {
-  "asOf": "2026-11-18",
-  "days": 191,
+  "asOf": "2026-11-19",
+  "days": 192,
   "projects": 31,
   "repos": 31,
-  "commits": 1977,
+  "commits": 1978,
   "commitBucket": "1900+",
   "cost": 438.0,
   "income": 0,
