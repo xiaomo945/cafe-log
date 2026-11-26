@@ -1,6 +1,10 @@
 {
-  "last_run": "2026-11-26T03:49:10.178188+08:00",
+  "last_run": "2026-11-27T03:27:33.007728+08:00",
   "repos": {
+    "cafe-log": {
+      "pushed_at": "2026-11-25T19:49:21Z",
+      "commits": null
+    },
     "neon-red-moon": {
       "pushed_at": "2026-11-25T17:31:02Z",
       "commits": 37
@@ -8,10 +12,6 @@
     "okx-bot": {
       "pushed_at": "2026-11-25T14:02:02Z",
       "commits": 183
-    },
-    "cafe-log": {
-      "pushed_at": "2026-11-24T20:32:54Z",
-      "commits": null
     },
     "mbti-china": {
       "pushed_at": "2026-11-24T02:28:09Z",
